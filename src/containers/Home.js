@@ -14,13 +14,18 @@ class Home extends Component {
   render() {
     let conditionsArray = this.state.conditionsArray
 
+    let conditionsLocation = conditionsArray.map((item, index) => (
+      <HomeConditions conditions={conditionsArray[index]} key={index} />
+    ));
+
     return (
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to React</h2>
+          <h3>Home Page</h3>
         </div>
-        <HomeConditions conditionsArray={conditionsArray} />
+        {conditionsLocation}
       </div>
     );
   }

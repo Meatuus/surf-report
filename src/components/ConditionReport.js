@@ -2,7 +2,7 @@ import React from 'react';
 
 const ConditionReport = props => (
   <div className="App-intro">
-    <h2>Location Conditions</h2>
+    <h2>{props.location}</h2>
     <ul>
       <li>
         <h3>Swell</h3>
