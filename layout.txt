@@ -1,0 +1,23 @@
+Layout
+
+Home Page
+=========
+
+- Main nav menu
+- Login
+- select location
+- map??
+
+
+Profile Page
+============
+- select notification interval
+- select location(s)
+- contact details (phone #)
+- upload photo
+
+Surf Location Page
+==================
+- conditions
+- webcam? or image?
+- forecast
