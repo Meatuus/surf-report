@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import HomeConditions from '../components/HomeConditions';
-import logo from '../assets/logo.svg';
 
 class Home extends Component {
   constructor(props) {
@@ -19,12 +18,8 @@ class Home extends Component {
     ));
 
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-          <h3>Home Page</h3>
-        </div>
+      <div>
+        <h3>Home Page</h3>
         {conditionsLocation}
       </div>
     );

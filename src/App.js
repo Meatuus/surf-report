@@ -8,11 +8,14 @@ import conditions from './data/conditions';
 import Home from './containers/Home';
 import Locations from './containers/Locations'
 import './assets/css/App.css';
+import logo from './assets/logo.svg';
 
 const App = () => (
   <Router>
-    <div>
+    <div className="App">
       <nav className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <h1>Surf Alert</h1>
         <ul>
           <Link to="/">Home</Link>{' '}
           <Link to="/locations">Locations</Link>
