@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import ConditionLocation from '../components/ConditionLocation';
+import Search from '../components/Search';
 import logo from '../assets/logo.svg';
 
 class Locations extends Component {
@@ -12,16 +13,17 @@ class Locations extends Component {
   }
 
   render() {
-    let conditionsArray = this.state.conditionsArray
-
-    let conditionsLocation = conditionsArray.map((item, index) => (
-      <ConditionLocation conditions={conditionsArray[index]} key={index} />
-    ));
+    // let conditionsArray = this.state.conditionsArray
+    //
+    // let conditionsLocation = conditionsArray.map((item, index) => (
+    //   <ConditionLocation conditions={conditionsArray[index]} key={index} />
+    // ));
 
     return (
       <div>
-        <h3>Home Page</h3>
-        {conditionsLocation}
+        <h3>Locations</h3>
+        <Search locations={this.props.conditions} />
+        {/* {conditionsLocation} */}
       </div>
     );
   }
