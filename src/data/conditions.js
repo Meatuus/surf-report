@@ -1,4 +1,4 @@
-"use strict";
+// "use strict";
 
 const conditions = {
   timestamp: 1366902000,
