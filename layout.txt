@@ -6,6 +6,7 @@ Home Page
 - Main nav menu
 - Login
 - select location
+- image
 - map??
 
 
@@ -21,3 +22,5 @@ Surf Location Page
 - conditions
 - webcam? or image?
 - forecast
+- list all locations
+- filter by location to show closest beach to you on top

@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom';
 import conditions from './data/conditions';
 import Home from './containers/Home';
-import ConditionReport from './components/ConditionReport';
+import Locations from './containers/Locations'
 import './assets/css/App.css';
 
 const App = () => (
@@ -15,19 +15,19 @@ const App = () => (
       <nav className="App-header">
         <ul>
           <Link to="/">Home</Link>{' '}
+          <Link to="/locations">Locations</Link>
           {/* <Link to="/profile">Profile</Link>{' '} */}
-          <Link to="/conditions">Location</Link>
         </ul>
       </nav>
       <Route exact path="/" component={
         () => (<Home conditions={conditions} />
         )} />
+      <Route path="/locations" component={
+        () => (<Locations conditions={conditions}/>
+        )} />
       {/* <Route path="/profile" component={
         () => (<Profile experiencesList={experiencesList}/>
       )} /> */}
-      <Route path="/conditions" component={
-        () => (<ConditionReport conditions={conditions}/>
-        )} />
     </div>
   </Router>
 )
