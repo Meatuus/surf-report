@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ConditionLocation from './ConditionLocation';
+import ConditionReport from './ConditionReport';
 
 class Search extends Component {
   constructor(props) {
@@ -16,7 +16,6 @@ class Search extends Component {
     this.setState({
       where: e.target.value
     });
-    console.log(this.state.where);
   }
 
   searchLocations(e) {
@@ -39,8 +38,20 @@ class Search extends Component {
     let matchedSearch = this.state.matchedSearch
 
     const matchedSearchList = matchedSearch.map( (item, index) => (
-      <ConditionLocation conditions={item} key={index} />
-    ))
+        <ConditionReport
+          location={item.location}
+          swellHeightMin={item.swell.minBreakingHeight}
+          swellHeightMax={item.swell.maxBreakingHeight}
+          swellUnit={item.swell.unit}
+          swellDirection={item.swell.components.combined.compassDirection}
+          windSpeed={item.wind.speed}
+          windDirection={item.wind.compassDirection}
+          windUnit={item.wind.unit}
+          temperature={item.condition.temperature}
+          temperatureUnit={item.condition.unit}
+          key={index}
+        />
+        ))
 
     const locationSearch = this.props.locations
 
@@ -60,6 +71,7 @@ class Search extends Component {
           /> */}
 
           <label htmlFor="where">
+            Select a location
             <select value={this.state.value} onChange={this.newWhereChange} id="where">
               <option>All Locations</option>
               {dropdown}
