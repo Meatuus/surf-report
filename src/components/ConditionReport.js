@@ -12,11 +12,10 @@ const ConditionReport = props => (
   <div>
 
     <div>
-      <Link to={`/locations/${props.location}`}>
-        Test
+      <Link to={`/location/${props.location.replace(/ /g,'')}`}>
+        Link to {props.location} Page
       </Link>
 
-      <Route path={`/locations/${props.location}`} component={Location} />
     </div>
     <div className="App-intro">
       <h2>{props.location}</h2>
