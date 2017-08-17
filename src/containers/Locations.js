@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import ConditionLocation from '../components/ConditionLocation';
+// import ConditionLocation from '../components/ConditionLocation';
 import Search from '../components/Search';
-import logo from '../assets/logo.svg';
+// import logo from '../assets/logo.svg';
 
 class Locations extends Component {
   constructor(props) {
@@ -22,7 +22,7 @@ class Locations extends Component {
     return (
       <div>
         <h3>Locations</h3>
-        <Search locations={this.props.conditions} />
+        <Search locations={this.state.conditionsArray} />
         {/* {conditionsLocation} */}
       </div>
     );
