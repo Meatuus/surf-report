@@ -1,30 +1,25 @@
 import React, {Component} from 'react';
-// import HomeConditions from '../components/HomeConditions';
+import LocationSwell from '../components/LocationSwell';
+import LocationWind from '../components/LocationWind';
+import LocationTemperature from '../components/LocationTemperature';
 
 const Location = (props) => (
-  <div>
-
-    <div className="App-intro">
-      {/* <h2>{props.location}</h2>
-        <ul>
-        <li>
-          <h3>Swell</h3>
-          <div>{props.swellHeightMin} - {props.swellHeightMax} {props.swellUnit}</div>
-          <div>{props.swellDirection}</div>
-        </li>
-        <li>
-          <h3>Wind</h3>
-          <div>{props.windSpeed} {props.windUnit}</div>
-          <div>{props.windDirection}</div>
-        </li>
-        <li>
-          <h3>Temperature</h3>
-          <div>{props.temperature} {`${props.temperatureUnit}`.toUpperCase()}</div>
-        </li>
-      </ul> */}
-      <h1>TEsting Location</h1>
-      <h2>{props.conditions.location}</h2>
-    </div>
+  <div className="App-intro">
+    <h1>{props.conditions.location}</h1>
+    <LocationSwell
+      swellHeightMin={props.conditions.swell.minBreakingHeight}
+      swellHeightMax={props.conditions.swell.maxBreakingHeight}
+      swellUnit={props.conditions.swell.unit}
+      swellDirection={props.conditions.swell.components.combined.compassDirection}
+    />
+    <LocationWind windSpeed={props.conditions.wind.speed}
+      windUnit={props.conditions.wind.unit}
+      windDirection={props.conditions.wind.compassDirection}
+    />
+    <LocationTemperature
+      temperature={props.conditions.condition.temperature}
+      temperatureUnit={props.conditions.condition.unit}
+    />
   </div>
 );
 
