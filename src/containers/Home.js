@@ -16,6 +16,10 @@ class Home extends Component {
     }
   }
 
+  linkLocation(e) {
+
+  }
+
   render() {
     let conditionsArray = this.state.conditionsArray
 
@@ -24,20 +28,21 @@ class Home extends Component {
     ));
 
     const locationLinks = conditionsArray.map((item, index) => (
-      <Link to={`/location/${item.location.replace(/ /g,'')}`} key={index}>{item.location}</Link>
+      <Link to={`/location/${item.location.replace(/ /g,'')}`} key={index}>{item.location} </Link>
     ))
 
     const locationRoutes = conditionsArray.map((item, index) => (
-      <Route path={`/location/${item.location.replace(/ /g,'')}`} key={index} component={
-        () => (<Location />
-        )} />
+      <Route path={`/location/${item.location.replace(/ /g,'')}`} key={index} component={ () => (<Location />)}
+      />
     ))
 
     return (
       <div>
         <h3>Home Page</h3>
         <div>
-          {locationLinks}
+          <ul>
+            {locationLinks}
+          </ul>
           {locationRoutes}
         </div>
         {conditionsLocation}
