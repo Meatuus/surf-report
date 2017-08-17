@@ -7,6 +7,7 @@ import {
 import conditions from './data/conditions';
 import Home from './containers/Home';
 import Locations from './containers/Locations'
+import Location from './containers/Location'
 import './assets/css/App.css';
 import logo from './assets/logo.svg';
 
@@ -19,6 +20,7 @@ const App = () => (
         <ul>
           <Link to="/">Home</Link>{' '}
           <Link to="/locations">Locations</Link>
+          {/* <Link to="/location">Location</Link> */}
           {/* <Link to="/profile">Profile</Link>{' '} */}
         </ul>
       </nav>
@@ -27,6 +29,9 @@ const App = () => (
         )} />
       <Route path="/locations" component={
         () => (<Locations conditions={conditions}/>
+        )} />
+      <Route path="/location" component={
+        () => (<Location conditions={conditions}/>
         )} />
       {/* <Route path="/profile" component={
         () => (<Profile experiencesList={experiencesList}/>
