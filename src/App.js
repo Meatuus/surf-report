@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {
   BrowserRouter as Router,
   Route,
@@ -11,33 +11,41 @@ import Location from './containers/Location'
 import './assets/css/App.css';
 import logo from './assets/logo.svg';
 
-const App = () => (
-  <Router>
-    <div className="App">
-      <nav className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1>Surf Alert</h1>
-        <ul>
-          <Link to="/">Home</Link>{' '}
-          <Link to="/locations">Locations</Link>
-          {/* <Link to="/location">Location</Link> */}
-          {/* <Link to="/profile">Profile</Link>{' '} */}
-        </ul>
-      </nav>
-      <Route exact path="/" component={
-        () => (<Home conditions={conditions} />
-        )} />
-      <Route path="/locations" component={
-        () => (<Locations conditions={conditions}/>
-        )} />
-      <Route path="/location" component={
-        () => (<Location conditions={conditions}/>
-        )} />
-      {/* <Route path="/profile" component={
-        () => (<Profile experiencesList={experiencesList}/>
-      )} /> */}
-    </div>
-  </Router>
-)
+class App extends Component {
+
+  render() {
+    const locationRoutes = conditions.map((item, index) => (
+      <Route
+        path={`/location/${item.location.replace(/ /g,'')}`} key={index} component={ () => (<Location conditions={conditions[index]}/>)}
+      />
+    ))
+
+    return (
+      <Router>
+        <div className="App">
+          <nav className="App-header">
+            <img src={logo} className="App-logo" alt="logo" />
+            <h1>Surf Alert</h1>
+            <ul>
+              <Link to="/">Home</Link>{' '}
+              <Link to="/locations">Locations</Link>
+              {/* <Link to="/profile">Profile</Link>{' '} */}
+            </ul>
+          </nav>
+          <Route exact path="/" component={
+            () => (<Home conditions={conditions} />
+            )} />
+          <Route path="/locations" component={
+            () => (<Locations conditions={conditions}/>
+            )} />
+          {locationRoutes}
+          {/* <Route path="/profile" component={
+            () => (<Profile experiencesList={experiencesList}/>
+          )} /> */}
+        </div>
+      </Router>
+    );
+  }
+}
 
 export default App;

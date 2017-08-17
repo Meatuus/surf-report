@@ -1,10 +1,6 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 import HomeConditions from '../components/HomeConditions';
-
-import {
-  Route,
-  Link
-} from 'react-router-dom';
 import Location from './Location';
 
 class Home extends Component {
@@ -14,10 +10,6 @@ class Home extends Component {
     this.state = {
       conditionsArray: this.props.conditions
     }
-  }
-
-  linkLocation(e) {
-
   }
 
   render() {
@@ -31,11 +23,6 @@ class Home extends Component {
       <Link to={`/location/${item.location.replace(/ /g,'')}`} key={index}>{item.location} </Link>
     ))
 
-    const locationRoutes = conditionsArray.map((item, index) => (
-      <Route path={`/location/${item.location.replace(/ /g,'')}`} key={index} component={ () => (<Location />)}
-      />
-    ))
-
     return (
       <div>
         <h3>Home Page</h3>
@@ -43,7 +30,6 @@ class Home extends Component {
           <ul>
             {locationLinks}
           </ul>
-          {locationRoutes}
         </div>
         {conditionsLocation}
       </div>

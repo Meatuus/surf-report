@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 // import HomeConditions from '../components/HomeConditions';
 
-const Location = props => (
+const Location = (props) => (
   <div>
 
     <div className="App-intro">
@@ -23,6 +23,7 @@ const Location = props => (
         </li>
       </ul> */}
       <h1>TEsting Location</h1>
+      <h2>{props.conditions.location}</h2>
     </div>
   </div>
 );
