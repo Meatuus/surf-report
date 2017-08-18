@@ -12,6 +12,28 @@ import './assets/css/App.css';
 import logo from './assets/logo.svg';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      conditions: ""
+    }
+  }
+
+  componentDidMount() {
+    // let base = this
+    //
+    // let surfApi = "http://magicseaweed.com/api/key/forecast/?spot_id=1";
+    // fetch(surfApi)
+    //   .then((response) => {
+    //     return response.json()
+    //   }).then((json) => {
+    //     base.setState({ conditions: json });
+    //     console.log('set state');
+    //
+    //   }).catch((ex) => {
+    //     console.log('An error occured while parsing!', ex)
+    //   });
+  }
 
   render() {
     const locationRoutes = conditions.map((item, index) => (
@@ -26,6 +48,8 @@ class App extends Component {
           <nav className="App-header">
             <img src={logo} className="App-logo" alt="logo" />
             <h1>Surf Alert</h1>
+            <p>{this.state.conditions}</p>
+
             <ul>
               <Link to="/">Home</Link>{' '}
               <Link to="/locations">Locations</Link>
