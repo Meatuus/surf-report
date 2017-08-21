@@ -22,7 +22,7 @@ class App extends Component {
   componentDidMount() {
     // let base = this
     //
-    // let surfApi = "http://magicseaweed.com/api/key/forecast/?spot_id=1";
+    // let surfApi = "http://magicseaweed.com/api/f03a395d88e9766e7ba7b625c73cc794/forecast/?spot_id=1";
     // fetch(surfApi)
     //   .then((response) => {
     //     return response.json()
