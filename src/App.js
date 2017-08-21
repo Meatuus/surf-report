@@ -4,6 +4,7 @@ import {
   Route,
   Link
 } from 'react-router-dom';
+import axios from 'axios';
 import conditions from './data/conditions';
 import Home from './containers/Home';
 import Locations from './containers/Locations'
@@ -19,7 +20,17 @@ class App extends Component {
     }
   }
 
+  loadCommentsFromServer() {
+    axios.get(this.props.url)
+    .then(res => {
+      this.setState({ conditions: res.data });
+    })
+    // TODO: sort past times and remove from data
+    // TODO: break up conditions state into current and future array
+  }
+
   componentDidMount() {
+    this.loadCommentsFromServer();
     // let base = this
     //
     // let surfApi = "http://magicseaweed.com/api/f03a395d88e9766e7ba7b625c73cc794/forecast/?spot_id=1";
@@ -36,11 +47,11 @@ class App extends Component {
   }
 
   render() {
-    const locationRoutes = conditions.map((item, index) => (
-      <Route
-        path={`/location/${item.location.replace(/ /g,'')}`} key={index} component={ () => (<Location conditions={conditions[index]}/>)}
-      />
-    ))
+    // const locationRoutes = conditions.map((item, index) => (
+    //   <Route
+    //     path={`/location/${item.location.replace(/ /g,'')}`} key={index} component={ () => (<Location conditions={conditions[index]}/>)}
+    //   />
+    // ))
 
     return (
       <Router>
@@ -62,7 +73,7 @@ class App extends Component {
           <Route path="/locations" component={
             () => (<Locations conditions={conditions}/>
             )} />
-          {locationRoutes}
+          {/* {locationRoutes} */}
           {/* <Route path="/profile" component={
             () => (<Profile experiencesList={experiencesList}/>
           )} /> */}
