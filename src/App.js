@@ -16,45 +16,13 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      conditions: [],
-      // conditionsNow: "",
-      // conditionsToday: [],
-      // conditionsTomorrow: "",
-      // conditonsTwoDays: "",
-      // conditonsThreeDays: "",
-      // conditonsFourDays: "",
-      // conditonsFiveDays: "",
       loading: true,
-      // locationFirst: {
-      //   location: "Lennox Head",
-      //   conditions: []
-      // },
       locationOne: "Lennox Head",
       conditionsOne: [],
       locationTwo: "Ballina",
       conditionsTwo: [],
       locationThree: "Byron Bay",
       conditionsThree: [],
-      locations: {
-        locationOne: "Lennox Head",
-        conditionsOne: [],
-        locationTwo: "Ballina",
-        conditionsTwo: [],
-        locationThree: "Byron Bay",
-        conditionsThree: [],
-        // first: {
-        //   location: 'Lennox Head',
-        //   conditions: []
-        // },
-        // second: {
-        //   location: 'Ballina',
-        //   conditions: []
-        // },
-        // third: {
-        //   location: 'Byron Bay',
-        //   conditions: []
-        // },
-      }
     }
 
     this.loadCommentsFromServer = this.loadCommentsFromServer.bind(this);
@@ -108,17 +76,7 @@ class App extends Component {
     //     path={`/location/${item.location.replace(/ /g,'')}`} key={index} component={ () => (<Location conditions={conditions[index]}/>)}
     //   />
     // ))
-    const conditionsAll = this.state.locations.conditionsTwo;
 
-    const times = conditionsAll.map((item, index) => (
-      <h2 key={index}>{item.timestamp}</h2>
-    ));
-
-    // const conditionsLennox = this.state.locationFirst.conditions;
-    //
-    // const lennox = conditionsLennox.map((item, index) => (
-    //   <h2 key={index}>{item.timestamp}</h2>
-    // ));
 
     return (
       <Router>
@@ -127,23 +85,8 @@ class App extends Component {
             <img src={logo} className="App-logo" alt="logo" />
             <h1>Surf Alert</h1>
 
-            <h2>{this.state.locations.locationOne}</h2>
-            {/* <div>
-              {lennox}
-            </div> */}
-            {/* <p>{this.state.locations.first.conditions}</p> */}
-            {/* <p>array: {this.state.conditions.timestamp}</p> */}
-            {/* <div>
-              {this.state.conditions.map(e => (
-                <h2>New Blogs:</h2>
-                <div>
+            <h2>{this.state.locationOne}</h2>
 
-              <h3>{e.timestamp}</h3>
-              </div>
-              <p>{e.solidRating}</p>
-              ))}
-            </div> */}
-            <div>{times}</div>
             <ul>
               <Link to="/">Home</Link>{' '}
               <Link to="/locations">Locations</Link>
@@ -163,6 +106,15 @@ class App extends Component {
           {/* <Route path="/locations" component={
             () => (<Locations conditions={conditions}/>
           )} /> */}
+          <Route
+            path={`/location/${this.state.locationOne.replace(/ /g,'_')}`} component={ () => (<Location conditions={this.state.conditionsOne}/>)}
+          />
+          <Route
+            path={`/location/${this.state.locationTwo.replace(/ /g,'_')}`} component={ () => (<Location conditions={this.state.conditionsTwo}/>)}
+          />
+          <Route
+            path={`/location/${this.state.locationThree.replace(/ /g,'_')}`} component={ () => (<Location conditions={this.state.conditionsThree}/>)}
+          />
           {/* {locationRoutes} */}
           {/* <Route path="/profile" component={
             () => (<Profile experiencesList={experiencesList}/>
