@@ -18,7 +18,7 @@ const ConditionReport = props => (
 
     </div>
     <div className="App-intro">
-      <h2>{props.location}</h2>
+      <h2>{props.time}</h2>
       <ul>
         <LocationSwell
           swellHeightMin={props.swellHeightMin}
