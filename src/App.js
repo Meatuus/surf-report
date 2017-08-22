@@ -17,35 +17,85 @@ class App extends Component {
     super(props);
     this.state = {
       conditions: [],
-      conditionsNow: "",
-      conditionsToday: "",
-      conditionsTomorrow: "",
-      conditonsTwoDays: "",
-      conditonsThreeDays: "",
-      conditonsFourDays: "",
-      conditonsFiveDays: "",
-      loading: true
+      // conditionsNow: "",
+      // conditionsToday: [],
+      // conditionsTomorrow: "",
+      // conditonsTwoDays: "",
+      // conditonsThreeDays: "",
+      // conditonsFourDays: "",
+      // conditonsFiveDays: "",
+      loading: true,
+      locations: {
+        // conditionsTest: [],
+        first: {
+          location: 'Lennox Head',
+          conditions: []
+        },
+        second: {
+          location: 'Ballina',
+          conditions: []
+        },
+        third: {
+          location: 'Byron Bay',
+          conditions: []
+        },
+      }
+      // locations: ['Lennox Head', 'Ballina', 'Byron Bay']
     }
 
     this.loadCommentsFromServer = this.loadCommentsFromServer.bind(this);
   }
 
   loadCommentsFromServer() {
-    axios.get(this.props.url)
+
+    // let conditionsArray = this.state.conditions;
+    // let conditionsTodayArray = this.state.conditionsToday;
+
+    axios.get(this.props.urlFirst)
     .then(res => {
+      let locations = {...this.state.locations}
+      locations.first.conditions = res.data
       this.setState({
-        conditions: res.data,
+        locations: locations,
+        // conditions: conditionsArray,
         loading: false,
-        conditionsToday: res.data[0].timestamp
+        // conditionsToday: conditionsTodayArray
       });
       console.log('state set');
     })
+
+    axios.get(this.props.urlSecond)
+    .then(res => {
+      let locations = {...this.state.locations}
+      locations.second.conditions = res.data
+      this.setState({
+        conditions: locations,
+        loading: false,
+        // conditionsToday: conditionsTodayArray
+      });
+      console.log('state set');
+    })
+
+    axios.get(this.props.urlThird)
+    .then(res => {
+      let locations = {...this.state.locations}
+      locations.third.conditions = res.data
+      this.setState({
+        conditions: locations,
+        loading: false,
+        // conditionsToday: conditionsTodayArray
+      });
+      console.log('state set');
+    })
+    // return conditionsArray;
     // TODO: sort past times and remove from data
     // TODO: break up conditions state into current and future array
   }
 
   componentDidMount() {
     this.loadCommentsFromServer();
+
+    // this.setState({ conditions: conditionsArray })
     // let base = this
     //
     // let surfApi = "http://magicseaweed.com/api/f03a395d88e9766e7ba7b625c73cc794/forecast/?spot_id=1";
@@ -69,7 +119,7 @@ class App extends Component {
     //     path={`/location/${item.location.replace(/ /g,'')}`} key={index} component={ () => (<Location conditions={conditions[index]}/>)}
     //   />
     // ))
-    const conditionsAll = this.state.conditions;
+    const conditionsAll = this.state.locations.first.conditions;
 
     const times = conditionsAll.map((item, index) => (
       <h2 key={index}>{item.timestamp}</h2>
@@ -81,7 +131,8 @@ class App extends Component {
           <nav className="App-header">
             <img src={logo} className="App-logo" alt="logo" />
             <h1>Surf Alert</h1>
-            <p>{this.state.conditionsToday}</p>
+            <h2>{this.state.locations.first.location}</h2>
+            {/* <p>{this.state.locations.first.conditions}</p> */}
             {/* <p>array: {this.state.conditions.timestamp}</p> */}
             {/* <div>
               {this.state.conditions.map(e => (
@@ -100,12 +151,12 @@ class App extends Component {
               {/* <Link to="/profile">Profile</Link>{' '} */}
             </ul>
           </nav>
-          <Route exact path="/" component={
-            () => (<Home conditions={conditions} />
+          {/* <Route exact path="/" component={
+            () => (<Home conditions={this.state.conditions} locations={this.state.locations} />
             )} />
-          <Route path="/locations" component={
+            <Route path="/locations" component={
             () => (<Locations conditions={conditions}/>
-            )} />
+          )} /> */}
           {/* {locationRoutes} */}
           {/* <Route path="/profile" component={
             () => (<Profile experiencesList={experiencesList}/>
