@@ -41,11 +41,28 @@ router.get('/', function(req, res) {
   res.json({ message: 'API Initialized!'});
 });
 
-app.get('/api/surf', (req, res) => (
-  request('http://magicseaweed.com/api/f03a395d88e9766e7ba7b625c73cc794/forecast/?spot_id=1', (error, response, body) => {
+app.get('/api/lennoxhead', (req, res) => (
+  request('http://magicseaweed.com/api/f03a395d88e9766e7ba7b625c73cc794/forecast/?spot_id=542', (error, response, body) => {
     if (!error && response.statusCode == 200) {
       var info = JSON.parse(body)
-      // do more stuff
+      res.send(info);
+    }
+  })
+))
+
+app.get('/api/ballina', (req, res) => (
+  request('http://magicseaweed.com/api/f03a395d88e9766e7ba7b625c73cc794/forecast/?spot_id=698', (error, response, body) => {
+    if (!error && response.statusCode == 200) {
+      var info = JSON.parse(body)
+      res.send(info);
+    }
+  })
+))
+
+app.get('/api/byronbay', (req, res) => (
+  request('http://magicseaweed.com/api/f03a395d88e9766e7ba7b625c73cc794/forecast/?spot_id=541', (error, response, body) => {
+    if (!error && response.statusCode == 200) {
+      var info = JSON.parse(body)
       res.send(info);
     }
   })
