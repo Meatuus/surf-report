@@ -4,7 +4,7 @@ import ConditionReport from './ConditionReport';
 const HomeConditions = (props) => (
   <div>
     <ConditionReport
-      location={props.conditions.location}
+      time={props.conditions.timestamp}
       swellHeightMin={props.conditions.swell.minBreakingHeight}
       swellHeightMax={props.conditions.swell.maxBreakingHeight}
       swellUnit={props.conditions.swell.unit}
