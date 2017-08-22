@@ -25,22 +25,36 @@ class App extends Component {
       // conditonsFourDays: "",
       // conditonsFiveDays: "",
       loading: true,
+      // locationFirst: {
+      //   location: "Lennox Head",
+      //   conditions: []
+      // },
+      locationOne: "Lennox Head",
+      conditionsOne: [],
+      locationTwo: "Ballina",
+      conditionsTwo: [],
+      locationThree: "Byron Bay",
+      conditionsThree: [],
       locations: {
-        // conditionsTest: [],
-        first: {
-          location: 'Lennox Head',
-          conditions: []
-        },
-        second: {
-          location: 'Ballina',
-          conditions: []
-        },
-        third: {
-          location: 'Byron Bay',
-          conditions: []
-        },
+        locationOne: "Lennox Head",
+        conditionsOne: [],
+        locationTwo: "Ballina",
+        conditionsTwo: [],
+        locationThree: "Byron Bay",
+        conditionsThree: [],
+        // first: {
+        //   location: 'Lennox Head',
+        //   conditions: []
+        // },
+        // second: {
+        //   location: 'Ballina',
+        //   conditions: []
+        // },
+        // third: {
+        //   location: 'Byron Bay',
+        //   conditions: []
+        // },
       }
-      // locations: ['Lennox Head', 'Ballina', 'Byron Bay']
     }
 
     this.loadCommentsFromServer = this.loadCommentsFromServer.bind(this);
@@ -48,70 +62,45 @@ class App extends Component {
 
   loadCommentsFromServer() {
 
-    // let conditionsArray = this.state.conditions;
-    // let conditionsTodayArray = this.state.conditionsToday;
-
     axios.get(this.props.urlFirst)
     .then(res => {
-      let locations = {...this.state.locations}
-      locations.first.conditions = res.data
+      // let locations = {...this.state.locations}
+      // locations.conditionsOne = res.data
       this.setState({
-        locations: locations,
-        // conditions: conditionsArray,
+        conditionsOne: res.data,
         loading: false,
-        // conditionsToday: conditionsTodayArray
       });
       console.log('state set');
     })
 
     axios.get(this.props.urlSecond)
     .then(res => {
-      let locations = {...this.state.locations}
-      locations.second.conditions = res.data
+      // let locations = {...this.state.locations}
+      // locations.conditionsTwo = res.data
       this.setState({
-        conditions: locations,
+        conditionsTwo: res.data,
         loading: false,
-        // conditionsToday: conditionsTodayArray
       });
       console.log('state set');
     })
 
     axios.get(this.props.urlThird)
     .then(res => {
-      let locations = {...this.state.locations}
-      locations.third.conditions = res.data
+      // let locations = {...this.state.locations}
+      // locations.conditionsThree = res.data
       this.setState({
-        conditions: locations,
+        conditionsThree: res.data,
         loading: false,
-        // conditionsToday: conditionsTodayArray
       });
       console.log('state set');
     })
-    // return conditionsArray;
     // TODO: sort past times and remove from data
     // TODO: break up conditions state into current and future array
   }
 
   componentDidMount() {
     this.loadCommentsFromServer();
-
-    // this.setState({ conditions: conditionsArray })
-    // let base = this
-    //
-    // let surfApi = "http://magicseaweed.com/api/f03a395d88e9766e7ba7b625c73cc794/forecast/?spot_id=1";
-    // fetch(surfApi)
-    //   .then((response) => {
-    //     return response.json()
-    //   }).then((json) => {
-    //     base.setState({ conditions: json });
-    //     console.log('set state');
-    //
-    //   }).catch((ex) => {
-    //     console.log('An error occured while parsing!', ex)
-    //   });
   }
-
-
 
   render() {
     // const locationRoutes = conditions.map((item, index) => (
@@ -119,11 +108,17 @@ class App extends Component {
     //     path={`/location/${item.location.replace(/ /g,'')}`} key={index} component={ () => (<Location conditions={conditions[index]}/>)}
     //   />
     // ))
-    const conditionsAll = this.state.locations.first.conditions;
+    const conditionsAll = this.state.locations.conditionsTwo;
 
     const times = conditionsAll.map((item, index) => (
       <h2 key={index}>{item.timestamp}</h2>
     ));
+
+    // const conditionsLennox = this.state.locationFirst.conditions;
+    //
+    // const lennox = conditionsLennox.map((item, index) => (
+    //   <h2 key={index}>{item.timestamp}</h2>
+    // ));
 
     return (
       <Router>
@@ -131,7 +126,11 @@ class App extends Component {
           <nav className="App-header">
             <img src={logo} className="App-logo" alt="logo" />
             <h1>Surf Alert</h1>
-            <h2>{this.state.locations.first.location}</h2>
+
+            <h2>{this.state.locations.locationOne}</h2>
+            {/* <div>
+              {lennox}
+            </div> */}
             {/* <p>{this.state.locations.first.conditions}</p> */}
             {/* <p>array: {this.state.conditions.timestamp}</p> */}
             {/* <div>
@@ -151,10 +150,17 @@ class App extends Component {
               {/* <Link to="/profile">Profile</Link>{' '} */}
             </ul>
           </nav>
-          {/* <Route exact path="/" component={
-            () => (<Home conditions={this.state.conditions} locations={this.state.locations} />
+          <Route exact path="/" component={
+            () => (<Home
+              locationOneConditions={this.state.conditionsOne}
+              locationOneName={this.state.locationOne}
+              locationTwoConditions={this.state.conditionsTwo}
+              locationTwoName={this.state.locationTwo}
+              locationThreeConditions={this.state.conditionsThree}
+              locationThreeName={this.state.locationThree}
+                   />
             )} />
-            <Route path="/locations" component={
+          {/* <Route path="/locations" component={
             () => (<Locations conditions={conditions}/>
           )} /> */}
           {/* {locationRoutes} */}
