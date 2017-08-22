@@ -16,11 +16,14 @@ class Home extends Component {
     let conditionsArray = this.state.conditionsArray
 
     let conditionsLocation = conditionsArray.map((item, index) => (
-      <HomeConditions conditions={conditionsArray[index]} key={index} />
+      // <HomeConditions conditions={conditionsArray[index]} key={index} />
+      <h1 key={index}>{conditionsArray[index]}</h1>
     ));
 
-    const locationLinks = conditionsArray.map((item, index) => (
-      <Link to={`/location/${item.location.replace(/ /g,'')}`} key={index}>{item.location} </Link>
+    const locations = this.props.locations;
+
+    const locationLinks = locations.map((item, index) => (
+      <Link to={`/location/${item.replace(/ /g,'')}`} key={index}>{item}</Link>
     ))
 
     return (

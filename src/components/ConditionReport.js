@@ -12,9 +12,9 @@ const ConditionReport = props => (
   <div>
 
     <div>
-      <Link to={`/location/${props.location.replace(/ /g,'')}`}>
+      {/* <Link to={`/location/${props.location.replace(/ /g,'')}`}>
         Link to {props.location} Page
-      </Link>
+      </Link> */}
 
     </div>
     <div className="App-intro">
