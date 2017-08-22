@@ -16,14 +16,29 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      conditions: ""
+      conditions: [],
+      conditionsNow: "",
+      conditionsToday: "",
+      conditionsTomorrow: "",
+      conditonsTwoDays: "",
+      conditonsThreeDays: "",
+      conditonsFourDays: "",
+      conditonsFiveDays: "",
+      loading: true
     }
+
+    this.loadCommentsFromServer = this.loadCommentsFromServer.bind(this);
   }
 
   loadCommentsFromServer() {
     axios.get(this.props.url)
     .then(res => {
-      this.setState({ conditions: res.data });
+      this.setState({
+        conditions: res.data,
+        loading: false,
+        conditionsToday: res.data[0].timestamp
+      });
+      console.log('state set');
     })
     // TODO: sort past times and remove from data
     // TODO: break up conditions state into current and future array
@@ -46,12 +61,19 @@ class App extends Component {
     //   });
   }
 
+
+
   render() {
     // const locationRoutes = conditions.map((item, index) => (
     //   <Route
     //     path={`/location/${item.location.replace(/ /g,'')}`} key={index} component={ () => (<Location conditions={conditions[index]}/>)}
     //   />
     // ))
+    const conditionsAll = this.state.conditions;
+
+    const times = conditionsAll.map((item, index) => (
+      <h2 key={index}>{item.timestamp}</h2>
+    ));
 
     return (
       <Router>
@@ -59,8 +81,19 @@ class App extends Component {
           <nav className="App-header">
             <img src={logo} className="App-logo" alt="logo" />
             <h1>Surf Alert</h1>
-            <p>{this.state.conditions}</p>
+            <p>{this.state.conditionsToday}</p>
+            {/* <p>array: {this.state.conditions.timestamp}</p> */}
+            {/* <div>
+              {this.state.conditions.map(e => (
+                <h2>New Blogs:</h2>
+                <div>
 
+              <h3>{e.timestamp}</h3>
+              </div>
+              <p>{e.solidRating}</p>
+              ))}
+            </div> */}
+            <div>{times}</div>
             <ul>
               <Link to="/">Home</Link>{' '}
               <Link to="/locations">Locations</Link>
