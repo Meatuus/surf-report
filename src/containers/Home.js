@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import HomeConditions from '../components/HomeConditions';
 import CurrentConditions from '../components/CurrentConditions';
-import Location from './Location';
 
 class Home extends Component {
   // constructor(props) {
@@ -15,22 +13,6 @@ class Home extends Component {
   // }
 
   render() {
-    const locationOne = this.props.locationOneConditions
-    const locationOneArray = locationOne.map((item, index) => (
-      // <CurrentConditions conditions={item} key={index}/>
-      <HomeConditions conditions={item} key={index}/>
-    ))
-
-    const locationTwo = this.props.locationTwoConditions
-    const locationTwoArray = locationTwo.map((item, index) => (
-      <HomeConditions conditions={item} key={index}/>
-    ))
-
-    const locationThree = this.props.locationThreeConditions
-    const locationThreeArray = locationThree.map((item, index) => (
-      <HomeConditions conditions={item} key={index}/>
-    ))
-
     return (
       <div>
         <h3>Home Page</h3>
@@ -42,17 +24,16 @@ class Home extends Component {
           </ul>
         </div>
         <div>
-          <h1>{this.props.locationOneName} Times:</h1>
-          {/* <CurrentConditions conditions={this.props.locationOneConditions}/> */}
-          {locationOneArray}
+          <h1>{this.props.locationOneName}</h1>
+          <CurrentConditions conditions={this.props.locationOneConditions}/>
         </div>
         <div>
-          <h1>{this.props.locationTwoName} Times:</h1>
-          {locationTwoArray}
+          <h1>{this.props.locationTwoName}</h1>
+          <CurrentConditions conditions={this.props.locationTwoConditions}/>
         </div>
         <div>
-          <h1>{this.props.locationThreeName} Times:</h1>
-          {locationThreeArray}
+          <h1>{this.props.locationThreeName}</h1>
+          <CurrentConditions conditions={this.props.locationThreeConditions}/>
         </div>
       </div>
     );
