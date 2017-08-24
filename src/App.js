@@ -17,7 +17,7 @@ class App extends Component {
     super(props);
     this.state = {
       loading: true,
-      locationOne: "Lennox Head",
+      locationOne: "Shelly Beach",
       conditionsOne: [],
       locationTwo: "Ballina",
       conditionsTwo: [],
@@ -32,8 +32,6 @@ class App extends Component {
 
     axios.get(this.props.urlFirst)
     .then(res => {
-      // let locations = {...this.state.locations}
-      // locations.conditionsOne = res.data
       this.setState({
         conditionsOne: res.data,
         loading: false,
@@ -43,8 +41,6 @@ class App extends Component {
 
     axios.get(this.props.urlSecond)
     .then(res => {
-      // let locations = {...this.state.locations}
-      // locations.conditionsTwo = res.data
       this.setState({
         conditionsTwo: res.data,
         loading: false,
@@ -54,8 +50,6 @@ class App extends Component {
 
     axios.get(this.props.urlThird)
     .then(res => {
-      // let locations = {...this.state.locations}
-      // locations.conditionsThree = res.data
       this.setState({
         conditionsThree: res.data,
         loading: false,
