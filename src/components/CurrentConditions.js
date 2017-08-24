@@ -23,7 +23,7 @@ class CurrentConditions extends Component {
     }
 
     this.setState({
-      currentConditions: locationArray[0],
+      currentConditions: locationArray,
     });
   }
 
@@ -33,23 +33,28 @@ class CurrentConditions extends Component {
   }
 
   render() {
+    const futureConditions = this.state.currentConditions
+    const futureConditionsArray = futureConditions.map((item, index) => (
+      <ConditionReport
+        time={item.timestamp}
+        swellHeightMin={item.swell.minBreakingHeight}
+        swellHeightMax={item.swell.maxBreakingHeight}
+        swellUnit={item.swell.unit}
+        swellDirection={item.swell.components.combined.compassDirection}
+        windSpeed={item.wind.speed}
+        windDirection={item.wind.compassDirection}
+        windUnit={item.wind.unit}
+        temperature={item.condition.temperature}
+        temperatureUnit={item.condition.unit}
+        key={index}
+      />
+    ))
+    const currentCondition = futureConditionsArray[0]
+
     return(
       <div>
         <h2>Current Conditions</h2>
-        <ConditionReport
-          time={this.state.currentConditions.timestamp}
-          swellHeightMin={this.state.currentConditions.swell.minBreakingHeight}
-          swellHeightMax={this.state.currentConditions.swell.maxBreakingHeight}
-          swellUnit={this.state.currentConditions.swell.unit}
-          swellDirection={this.state.currentConditions.swell.components.combined.compassDirection}
-          windSpeed={this.state.currentConditions.wind.speed}
-          windDirection={this.state.currentConditions.wind.compassDirection}
-          windUnit={this.state.currentConditions.wind.unit}
-          temperature={this.state.currentConditions.condition.temperature}
-          temperatureUnit={this.state.currentConditions.condition.unit}
-        />
-        {/* <h3>{locations}</h3> */}
-        {/* {future[0].timestamp} */}
+        {currentCondition}
       </div>
     );
   }
