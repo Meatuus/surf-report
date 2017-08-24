@@ -17,7 +17,8 @@ class Home extends Component {
   render() {
     const locationOne = this.props.locationOneConditions
     const locationOneArray = locationOne.map((item, index) => (
-      <CurrentConditions conditions={item} key={index}/>
+      // <CurrentConditions conditions={item} key={index}/>
+      <HomeConditions conditions={item} key={index}/>
     ))
 
     const locationTwo = this.props.locationTwoConditions
@@ -42,8 +43,8 @@ class Home extends Component {
         </div>
         <div>
           <h1>{this.props.locationOneName} Times:</h1>
-          <CurrentConditions conditions={this.props.locationOneConditions}/>
-          {/* {locationOneArray} */}
+          {/* <CurrentConditions conditions={this.props.locationOneConditions}/> */}
+          {locationOneArray}
         </div>
         <div>
           <h1>{this.props.locationTwoName} Times:</h1>
