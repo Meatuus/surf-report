@@ -36,7 +36,6 @@ class App extends Component {
         conditionsOne: res.data,
         loading: false,
       });
-      console.log('state set');
     })
 
     axios.get(this.props.urlSecond)
@@ -45,7 +44,6 @@ class App extends Component {
         conditionsTwo: res.data,
         loading: false,
       });
-      console.log('state set');
     })
 
     axios.get(this.props.urlThird)
@@ -54,7 +52,6 @@ class App extends Component {
         conditionsThree: res.data,
         loading: false,
       });
-      console.log('state set');
     })
     // TODO: sort past times and remove from data
     // TODO: break up conditions state into current and future array
