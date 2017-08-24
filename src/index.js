@@ -6,7 +6,7 @@ import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(
   <App
-    urlFirst="http://localhost:3001/api/lennoxhead"
+    urlFirst="http://localhost:3001/api/shellybeach"
     urlSecond="http://localhost:3001/api/ballina"
     urlThird="http://localhost:3001/api/byronbay"
   />,
