@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import ConditionReport from './ConditionReport';
 
 class CurrentConditions extends Component {
   constructor(props) {
@@ -8,72 +9,45 @@ class CurrentConditions extends Component {
       currentConditions: this.props.conditions
     }
 
-    // this.getCurrent = this.getCurrent.bind(this);
+    this.getCurrent = this.getCurrent.bind(this);
   }
 
-  // getCurrent() {
-  //   let locationArray = [];
-  //   let date = new Date();
-  //
-  //   for (var i = 0; i < this.props.conditions.length; i++) {
-  //     if (this.props.conditions[i].timestamp > date) {
-  //       locationArray.push(this.props.conditions[i])
-  //
-  //     }
-  //   }
-  //
-  //   // this.props.conditions.map((item) => (
-  //   //   if (item.timestamp > Time.now()) {
-  //   //     locationArray.push(item)
-  //   //   }
-  //   // ))
-  //
-  //   this.setState({
-  //     currentConditions: locationArray,
-  //   });
-  // }
+  getCurrent() {
+    let locationArray = [];
+    let date = (Date.now()/1000);
+
+    for (var i = 0; i < this.state.currentConditions.length; i++) {
+      if (this.state.currentConditions[i].timestamp > date) {
+        locationArray.push(this.props.conditions[i])
+      }
+    }
+
+    this.setState({
+      currentConditions: locationArray[0],
+    });
+  }
 
 
-  // componentDidMount() {
-  //   // setTimeout(this.getCurrent(), 5000);
-  //   this.getCurrent();
-  //
-  //   // this.setState({
-  //   //   currentConditions: ['test', false],
-  //   // });
-  // }
+  componentDidMount() {
+    setInterval(this.getCurrent(), 5000);
+  }
 
   render() {
-    // let locationArray = [];
-    // let date = new Date();
-    //
-    // for (var i = 0; i < this.props.conditions.length; i++) {
-    //   if (this.props.conditions[i].timestamp > date) {
-    //     locationArray.push(this.props.conditions[i])
-    //   }
-    // }
-    // const locations = locationArray[0].timestamp || "nothing"
-    // const locationOne = this.props.locationOneConditions
-    // let locationArray = []
-    // const locationOneArray = locationOne.map((item, index) => (
-    //   <CurrentConditions conditions={item} key={index}/>
-    //
-    //   if (item.timestamp > Time.now()) {
-    //     locationArray.push(item, index)
-    //   }
-    // ))
-
-    const locationArray = [];
-    let date = new Date();
-    const locations = this.state.currentConditions;
-    const future = locations.filter((f) => (
-      f > date
-    ))
-console.log(future);
-
     return(
       <div>
         <h2>Current Conditions</h2>
+        <ConditionReport
+          time={this.state.currentConditions.timestamp}
+          swellHeightMin={this.state.currentConditions.swell.minBreakingHeight}
+          swellHeightMax={this.state.currentConditions.swell.maxBreakingHeight}
+          swellUnit={this.state.currentConditions.swell.unit}
+          swellDirection={this.state.currentConditions.swell.components.combined.compassDirection}
+          windSpeed={this.state.currentConditions.wind.speed}
+          windDirection={this.state.currentConditions.wind.compassDirection}
+          windUnit={this.state.currentConditions.wind.unit}
+          temperature={this.state.currentConditions.condition.temperature}
+          temperatureUnit={this.state.currentConditions.condition.unit}
+        />
         {/* <h3>{locations}</h3> */}
         {/* {future[0].timestamp} */}
       </div>
