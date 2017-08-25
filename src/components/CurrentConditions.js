@@ -15,7 +15,6 @@ class CurrentConditions extends Component {
 
     const futureConditions = futureConditionsArray.map((item, index) => (
       <div className="App-intro" key={index}>
-        <h2>{item.timestamp}</h2>
         <ul>
           <LocationSwell
             swellHeightMin={item.swell.minBreakingHeight}
