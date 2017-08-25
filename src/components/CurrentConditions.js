@@ -1,37 +1,9 @@
 import React, {Component} from 'react';
-import ConditionReport from './ConditionReport';
+import LocationSwell from './LocationSwell';
+import LocationWind from './LocationWind';
+import LocationTemperature from './LocationTemperature';
 
 class CurrentConditions extends Component {
-  // constructor(props) {
-  //   super(props)
-  //
-  //   // this.state = {
-  //   //   currentConditions: this.props.conditions
-  //   // }
-  //
-  //   // this.getCurrent = this.getCurrent.bind(this);
-  // }
-
-  // getCurrent() {
-  //   let locationArray = [];
-  //   let date = (Date.now()/1000);
-  //
-  //   for (var i = 0; i < this.state.currentConditions.length; i++) {
-  //     if (this.state.currentConditions[i].timestamp > date) {
-  //       locationArray.push(this.props.conditions[i])
-  //     }
-  //   }
-  //
-  //   this.setState({
-  //     currentConditions: locationArray,
-  //   });
-  // }
-
-
-  // componentDidMount() {
-  //   setInterval(this.getCurrent(), 5000);
-  // }
-
   render() {
     let date = (Date.now()/1000);
     let futureConditionsArray = []
@@ -42,19 +14,25 @@ class CurrentConditions extends Component {
     }
 
     const futureConditions = futureConditionsArray.map((item, index) => (
-      <ConditionReport
-        time={item.timestamp}
-        swellHeightMin={item.swell.minBreakingHeight}
-        swellHeightMax={item.swell.maxBreakingHeight}
-        swellUnit={item.swell.unit}
-        swellDirection={item.swell.components.combined.compassDirection}
-        windSpeed={item.wind.speed}
-        windDirection={item.wind.compassDirection}
-        windUnit={item.wind.unit}
-        temperature={item.condition.temperature}
-        temperatureUnit={item.condition.unit}
-        key={index}
-      />
+      <div className="App-intro" key={index}>
+        <h2>{item.timestamp}</h2>
+        <ul>
+          <LocationSwell
+            swellHeightMin={item.swell.minBreakingHeight}
+            swellHeightMax={item.swell.maxBreakingHeight}
+            swellUnit={item.swell.unit}
+            swellDirection={item.swell.components.combined.compassDirection}
+          />
+          <LocationWind windSpeed={item.wind.speed}
+            windUnit={item.wind.unit}
+            windDirection={item.wind.compassDirection}
+          />
+          <LocationTemperature
+            temperature={item.condition.temperature}
+            temperatureUnit={item.condition.unit}
+          />
+        </ul>
+      </div>
     ));
     const currentCondition = futureConditions[0]
 
