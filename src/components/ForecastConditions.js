@@ -12,23 +12,23 @@ class ForecastConditions extends Component {
     let thirdDay = [];
     let fourthDay = [];
 
-    for (var i = 8; i < 16; i++) {
-      firstDay.push(this.props.conditions[i])
+    for (let i = 8; i < 16; i++) {
+      firstDay.push(conditions[i])
     }
-    for (var i = 16; i < 24; i++) {
-      secondDay.push(this.props.conditions[i])
+    for (let i = 16; i < 24; i++) {
+      secondDay.push(conditions[i])
     }
-    for (var i = 24; i < 32; i++) {
-      thirdDay.push(this.props.conditions[i])
+    for (let i = 24; i < 32; i++) {
+      thirdDay.push(conditions[i])
     }
-    for (var i = 32; i < 40; i++) {
-      fourthDay.push(this.props.conditions[i])
+    for (let i = 32; i < 40; i++) {
+      fourthDay.push(conditions[i])
     }
 
     // Get names of each day in forecast
     let days = []
-    for (var i = 8; i < this.props.conditions.length; i+=8) {
-      days.push(this.props.conditions[i])
+    for (var i = 8; i < conditions.length; i+=8) {
+      days.push(conditions[i])
     }
     const weekdays = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
     const conditionDays = days.map((item, index) => (
