@@ -1,9 +1,6 @@
 import React from 'react';
-import {
-  Route,
-  Link
-} from 'react-router-dom';
-import Location from '../containers/Location';
+// import {Link} from 'react-router-dom';
+// import Location from '../containers/Location';
 import LocationSwell from './LocationSwell';
 import LocationWind from './LocationWind';
 import LocationTemperature from './LocationTemperature';
