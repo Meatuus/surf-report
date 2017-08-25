@@ -41,15 +41,8 @@ class Location extends Component {
 
     return(
       <div>
+        <h2>{this.props.location}</h2>
         <CurrentConditions conditions={this.props.conditions}/>
-        {/* {currentCondition} */}
-
-        {/* {dayOneArray} */}
-        {/* <h2>Day Max: {first}</h2> */}
-        {/* <h2>{dayOne}</h2> */}
-        {/* {conditionOne} */}
-        {/* {`${maxSwell[0]} ${maxSwell[7]}`} */}
-        {/* {locationEach} */}
         <ForecastConditions conditions={this.props.conditions}/>
       </div>
     );
