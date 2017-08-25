@@ -4,6 +4,7 @@ import LocationWind from '../components/LocationWind';
 import LocationTemperature from '../components/LocationTemperature';
 import ConditionReport from '../components/ConditionReport';
 import CurrentConditions from '../components/CurrentConditions';
+import ForecastConditions from '../components/ForecastConditions';
 
 class Location extends Component {
   constructor(props) {
@@ -274,7 +275,7 @@ class Location extends Component {
         {/* {conditionOne} */}
         {/* {`${maxSwell[0]} ${maxSwell[7]}`} */}
         {/* {locationEach} */}
-        
+        <ForecastConditions conditions={this.props.conditions}/>
       </div>
     );
   }
