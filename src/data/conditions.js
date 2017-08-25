@@ -2,7 +2,6 @@
 
 const conditions = [
   {
-    location: "Lennox Head",
     timestamp: 1366902000,
     localTimestamp: 1366902000,
     issueTimestamp: 1366848000,
@@ -64,7 +63,6 @@ const conditions = [
     }
   },
   {
-    location: "Ballina",
     timestamp: 1366902000,
     localTimestamp: 1366902000,
     issueTimestamp: 1366848000,
@@ -126,7 +124,6 @@ const conditions = [
     }
   },
   {
-    location: "Byron Bay",
     timestamp: 1366902000,
     localTimestamp: 1366902000,
     issueTimestamp: 1366848000,
