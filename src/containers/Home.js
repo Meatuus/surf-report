@@ -3,16 +3,17 @@ import {Link} from 'react-router-dom';
 import CurrentConditions from '../components/CurrentConditions';
 
 class Home extends Component {
-  // constructor(props) {
-  //   super(props)
+  constructor(props) {
+    super(props)
   //
   //   this.state = {
   //     // conditionsArray: this.props.conditions
   //     locationsArray: this.props.locationFirst
   //   }
-  // }
+  }
 
   render() {
+
     return (
       <div>
         <h3>Home Page</h3>
