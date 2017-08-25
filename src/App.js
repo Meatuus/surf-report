@@ -8,7 +8,7 @@ import axios from 'axios';
 // import conditions from './data/conditions';
 import baseData from './data/baseData';
 import Home from './containers/Home';
-import Locations from './containers/Locations'
+// import Locations from './containers/Locations'
 import Location from './containers/Location'
 import './assets/css/App.css';
 import logo from './assets/logo.svg';
@@ -18,17 +18,12 @@ class App extends Component {
     super(props);
     this.state = {
       loading: true,
-      // locationOneDays: [],
       conditionsOne: baseData,
-      // locationTwoDays: [],
       conditionsTwo: baseData,
-      // locationThreeDays: [],
       conditionsThree: baseData,
     }
 
     this.loadCommentsFromServer = this.loadCommentsFromServer.bind(this);
-    // this.dayTwo = this.dayTwo.bind(this);
-    // this.locationOneDays = this.locationOneDays.bind(this);
   }
 
   loadCommentsFromServer() {
@@ -62,67 +57,11 @@ class App extends Component {
     // TODO: break up conditions state into current and future array
   }
 
-  // dayTwo() {
-  //    let day = []
-  //
-  //    for (var i = 8; i < 16; i++) {
-  //      day.push(this.state.conditionsTwo[i])
-  //    }
-  //
-  //    this.setState({
-  //      conditionsDayTwo: day
-  //    });
-  //  }
-  //  locationOneDays() {
-  //    let dayOne = [];
-  //    let dayTwo = [];
-  //    let dayThree = [];
-  //    let dayFour = [];
-  //    let dayFive = [];
-   //
-  //    for (var i = 0; i < 8; i++) {
-  //      dayOne.push(this.state.conditionsOne[i])
-  //    }
-  //    for (var i = 8; i < 16; i++) {
-  //      dayTwo.push(this.state.conditionsOne[i])
-  //    }
-  //    for (var i = 16; i < 24; i++) {
-  //      dayThree.push(this.state.conditionsOne[i])
-  //    }
-  //    for (var i = 24; i < 32; i++) {
-  //      dayFour.push(this.state.conditionsOne[i])
-  //    }
-  //    for (var i = 32; i < 40; i++) {
-  //      dayFive.push(this.state.conditionsOne[i])
-  //    }
-  //    console.log('location one');
-   //
-  //    this.setState({
-  //      locationOneDays: [
-  //        dayOne,
-  //        dayTwo,
-  //        dayThree,
-  //        dayFour,
-  //        dayFive
-  //      ]
-  //     //  conditionsDayOne: dayOne,
-  //     //  conditionsDayTwo: dayTwo,
-  //     //  conditionsDayThree: dayThree,
-  //     //  conditionsDayFour: dayFour,
-  //     //  conditionsDayFive: dayFive,
-  //    });
-  //  }
-
   componentDidMount() {
     this.loadCommentsFromServer();
   }
 
   render() {
-    // const locationRoutes = conditions.map((item, index) => (
-    //   <Route
-    //     path={`/location/${item.location.replace(/ /g,'')}`} key={index} component={ () => (<Location conditions={conditions[index]}/>)}
-    //   />
-    // ))
     const locationOne = "Shelly Beach";
     const locationTwo = "Ballina";
     const locationThree = "Byron Bay";
