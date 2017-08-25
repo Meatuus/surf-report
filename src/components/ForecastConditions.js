@@ -25,23 +25,57 @@ class ForecastConditions extends Component {
       fourthDay.push(this.props.conditions[i])
     }
 
-    const maxSwellArray = firstDay.map((item, index) => (
+    // Max Swell calculations
+    const maxSwellArrayOne = firstDay.map((item, index) => (
       item.swell.maxBreakingHeight
     ));
-    const maxSwell = Math.max(...maxSwellArray);
+    const maxSwellOne = Math.max(...maxSwellArrayOne);
 
-    const minSwellArray = firstDay.map((item, index) => (
+    const maxSwellArrayTwo = secondDay.map((item, index) => (
+      item.swell.maxBreakingHeight
+    ));
+    const maxSwellTwo = Math.max(...maxSwellArrayTwo);
+
+    const maxSwellArrayThree = thirdDay.map((item, index) => (
+      item.swell.maxBreakingHeight
+    ));
+    const maxSwellThree = Math.max(...maxSwellArrayThree);
+
+    const maxSwellArrayFour = fourthDay.map((item, index) => (
+      item.swell.maxBreakingHeight
+    ));
+    const maxSwellFour = Math.max(...maxSwellArrayFour);
+
+    // Min Swell calculations
+    const minSwellArrayOne = firstDay.map((item, index) => (
       item.swell.minBreakingHeight
     ));
-    const minSwell = Math.max(...minSwellArray);
+    const minSwellOne = Math.max(...minSwellArrayOne);
+
+    const minSwellArrayTwo = secondDay.map((item, index) => (
+      item.swell.minBreakingHeight
+    ));
+    const minSwellTwo = Math.max(...minSwellArrayTwo);
+
+    const minSwellArrayThree = thirdDay.map((item, index) => (
+      item.swell.minBreakingHeight
+    ));
+    const minSwellThree = Math.max(...minSwellArrayThree);
+
+    const minSwellArrayFour = fourthDay.map((item, index) => (
+      item.swell.minBreakingHeight
+    ));
+    const minSwellFour = Math.max(...minSwellArrayFour);
 
     console.log("hi");
     console.log(firstDay);
     return (
       <div>
         <h1>Forecasting...</h1>
-        <h3>{minSwell} ft - {maxSwell} ft</h3>
-        
+        <h3>{minSwellOne} ft - {maxSwellOne} ft</h3>
+        <h3>{minSwellTwo} ft - {maxSwellTwo} ft</h3>
+        <h3>{minSwellThree} ft - {maxSwellThree} ft</h3>
+        <h3>{minSwellFour} ft - {maxSwellFour} ft</h3>
       </div>
     );
   }
