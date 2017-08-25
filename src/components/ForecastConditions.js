@@ -25,44 +25,54 @@ class ForecastConditions extends Component {
       fourthDay.push(this.props.conditions[i])
     }
 
+    // Get names of each day in forecast
+    let days = []
+    for (var i = 8; i < this.props.conditions.length; i+=8) {
+      days.push(this.props.conditions[i])
+    }
+    const weekdays = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    const conditionDays = days.map((item, index) => (
+      <h2 key={index}>{weekdays[new Date(item.timestamp*1000).getDay()]}</h2>
+    ));
+
     // Max Swell calculations
-    const maxSwellArrayOne = firstDay.map((item, index) => (
+    const maxSwellArrayOne = firstDay.map((item) => (
       item.swell.maxBreakingHeight
     ));
     const maxSwellOne = Math.max(...maxSwellArrayOne);
 
-    const maxSwellArrayTwo = secondDay.map((item, index) => (
+    const maxSwellArrayTwo = secondDay.map((item) => (
       item.swell.maxBreakingHeight
     ));
     const maxSwellTwo = Math.max(...maxSwellArrayTwo);
 
-    const maxSwellArrayThree = thirdDay.map((item, index) => (
+    const maxSwellArrayThree = thirdDay.map((item) => (
       item.swell.maxBreakingHeight
     ));
     const maxSwellThree = Math.max(...maxSwellArrayThree);
 
-    const maxSwellArrayFour = fourthDay.map((item, index) => (
+    const maxSwellArrayFour = fourthDay.map((item) => (
       item.swell.maxBreakingHeight
     ));
     const maxSwellFour = Math.max(...maxSwellArrayFour);
 
     // Min Swell calculations
-    const minSwellArrayOne = firstDay.map((item, index) => (
+    const minSwellArrayOne = firstDay.map((item) => (
       item.swell.minBreakingHeight
     ));
     const minSwellOne = Math.max(...minSwellArrayOne);
 
-    const minSwellArrayTwo = secondDay.map((item, index) => (
+    const minSwellArrayTwo = secondDay.map((item) => (
       item.swell.minBreakingHeight
     ));
     const minSwellTwo = Math.max(...minSwellArrayTwo);
 
-    const minSwellArrayThree = thirdDay.map((item, index) => (
+    const minSwellArrayThree = thirdDay.map((item) => (
       item.swell.minBreakingHeight
     ));
     const minSwellThree = Math.max(...minSwellArrayThree);
 
-    const minSwellArrayFour = fourthDay.map((item, index) => (
+    const minSwellArrayFour = fourthDay.map((item) => (
       item.swell.minBreakingHeight
     ));
     const minSwellFour = Math.max(...minSwellArrayFour);
@@ -72,10 +82,10 @@ class ForecastConditions extends Component {
     return (
       <div>
         <h1>Forecasting...</h1>
-        <h3>{minSwellOne} ft - {maxSwellOne} ft</h3>
-        <h3>{minSwellTwo} ft - {maxSwellTwo} ft</h3>
-        <h3>{minSwellThree} ft - {maxSwellThree} ft</h3>
-        <h3>{minSwellFour} ft - {maxSwellFour} ft</h3>
+        <h3>{conditionDays[0]}{minSwellOne} ft - {maxSwellOne} ft</h3>
+        <h3>{conditionDays[1]}{minSwellTwo} ft - {maxSwellTwo} ft</h3>
+        <h3>{conditionDays[2]}{minSwellThree} ft - {maxSwellThree} ft</h3>
+        <h3>{conditionDays[3]}{minSwellFour} ft - {maxSwellFour} ft</h3>
       </div>
     );
   }
