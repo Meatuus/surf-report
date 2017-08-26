@@ -28,14 +28,27 @@ class App extends Component {
 
   loadCommentsFromServer() {
 
-    axios.get(this.props.urlFirst)
-    .then(res => {
+    Promise.all([
+      axios.get(this.props.urlFirst),
+      axios.get(this.props.urlSecond),
+      axios.get(this.props.urlThird)
+    ]).then((res) => {
       this.setState({
-        conditionsOne: res.data,
+        conditionsOne: res[0].data,
+        conditionsTwo: res[1].data,
+        conditionsThree: res[2].data,
         loading: false,
       });
-      // this.locationOneDays();
     });
+
+    // axios.get(this.props.urlFirst)
+    // .then(res => {
+    //   this.setState({
+    //     conditionsOne: res.data,
+    //     loading: false,
+    //   });
+    //   // this.locationOneDays();
+    // });
 
     // axios.get(this.props.urlSecond)
     // .then(res => {
@@ -80,7 +93,7 @@ class App extends Component {
               {/* <Link to="/profile">Profile</Link>{' '} */}
             </ul>
           </nav>
-          <Route exact path="/" component={
+          {/* <Route exact path="/" component={
             () => (<Home
               locationOneConditions={this.state.conditionsOne}
               locationOneName={locationOne}
@@ -88,14 +101,14 @@ class App extends Component {
               locationTwoName={locationTwo}
               locationThreeConditions={this.state.conditionsThree}
               locationThreeName={locationThree}
-                   />
-            )} />
+            />
+          )} /> */}
           {/* <Route path="/locations" component={
             () => (<Locations conditions={conditions}/>
           )} /> */}
-          <Route
+          {/* <Route
             path={`/location/${locationOne.replace(/ /g,'_')}`} component={ () => (<Location location="Shelly Beach" conditions={this.state.conditionsOne}/>)}
-          />
+          /> */}
           {/* <Route
             path={`/location/${locationTwo.replace(/ /g,'_')}`} component={ () => (<Location location="Ballina" conditions={this.state.conditionsTwo} />)}
             />
