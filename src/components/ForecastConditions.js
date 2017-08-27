@@ -1,10 +1,7 @@
 import React, {Component} from 'react';
+import ForecastSwell from './ForecastSwell';
 
 class ForecastConditions extends Component {
-  // constructor() {
-  //
-  // }
-
   render() {
     const conditions = this.props.conditions;
     let firstDay = [];
@@ -35,57 +32,13 @@ class ForecastConditions extends Component {
       <h2 key={index}>{weekdays[new Date(item.timestamp*1000).getDay()]}</h2>
     ));
 
-    // Max Swell calculations
-    const maxSwellArrayOne = firstDay.map((item) => (
-      item.swell.maxBreakingHeight
-    ));
-    const maxSwellOne = Math.max(...maxSwellArrayOne);
-
-    const maxSwellArrayTwo = secondDay.map((item) => (
-      item.swell.maxBreakingHeight
-    ));
-    const maxSwellTwo = Math.max(...maxSwellArrayTwo);
-
-    const maxSwellArrayThree = thirdDay.map((item) => (
-      item.swell.maxBreakingHeight
-    ));
-    const maxSwellThree = Math.max(...maxSwellArrayThree);
-
-    const maxSwellArrayFour = fourthDay.map((item) => (
-      item.swell.maxBreakingHeight
-    ));
-    const maxSwellFour = Math.max(...maxSwellArrayFour);
-
-    // Min Swell calculations
-    const minSwellArrayOne = firstDay.map((item) => (
-      item.swell.minBreakingHeight
-    ));
-    const minSwellOne = Math.max(...minSwellArrayOne);
-
-    const minSwellArrayTwo = secondDay.map((item) => (
-      item.swell.minBreakingHeight
-    ));
-    const minSwellTwo = Math.max(...minSwellArrayTwo);
-
-    const minSwellArrayThree = thirdDay.map((item) => (
-      item.swell.minBreakingHeight
-    ));
-    const minSwellThree = Math.max(...minSwellArrayThree);
-
-    const minSwellArrayFour = fourthDay.map((item) => (
-      item.swell.minBreakingHeight
-    ));
-    const minSwellFour = Math.max(...minSwellArrayFour);
-
-    console.log("hi");
-    console.log(firstDay);
     return (
       <div>
         <h1>Forecasting...</h1>
-        <h3>{conditionDays[0]}{minSwellOne} ft - {maxSwellOne} ft</h3>
-        <h3>{conditionDays[1]}{minSwellTwo} ft - {maxSwellTwo} ft</h3>
-        <h3>{conditionDays[2]}{minSwellThree} ft - {maxSwellThree} ft</h3>
-        <h3>{conditionDays[3]}{minSwellFour} ft - {maxSwellFour} ft</h3>
+        <ForecastSwell conditions={firstDay} day={conditionDays[0]} />
+        <ForecastSwell conditions={secondDay} day={conditionDays[1]} />
+        <ForecastSwell conditions={thirdDay} day={conditionDays[2]} />
+        <ForecastSwell conditions={fourthDay} day={conditionDays[3]} />
       </div>
     );
   }
