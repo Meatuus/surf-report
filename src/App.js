@@ -75,9 +75,8 @@ class App extends Component {
   }
 
   render() {
-    const locationOne = "Shelly Beach";
-    const locationTwo = "Ballina";
-    const locationThree = "Byron Bay";
+    const { conditionsOne, conditionsTwo, conditionsThree } = this.state;
+    const { first, second, third } = this.props;
 
     return (
       <Router>
@@ -85,7 +84,6 @@ class App extends Component {
           <nav className="App-header">
             <img src={logo} className="App-logo" alt="logo" />
             <h1>Surf Alert</h1>
-            <h2>{this.state.locationOne}</h2>
 
             <ul>
               <Link to="/">Home</Link>{' '}
@@ -93,22 +91,22 @@ class App extends Component {
               {/* <Link to="/profile">Profile</Link>{' '} */}
             </ul>
           </nav>
-          {/* <Route exact path="/" component={
+          <Route exact path="/" component={
             () => (<Home
-              locationOneConditions={this.state.conditionsOne}
-              locationOneName={locationOne}
-              locationTwoConditions={this.state.conditionsTwo}
-              locationTwoName={locationTwo}
-              locationThreeConditions={this.state.conditionsThree}
-              locationThreeName={locationThree}
-            />
-          )} /> */}
+              locationOneConditions={conditionsOne}
+              locationOneName={first}
+              locationTwoConditions={conditionsTwo}
+              locationTwoName={second}
+              locationThreeConditions={conditionsThree}
+              locationThreeName={third}
+                   />
+            )} />
           {/* <Route path="/locations" component={
             () => (<Locations conditions={conditions}/>
           )} /> */}
-          {/* <Route
-            path={`/location/${locationOne.replace(/ /g,'_')}`} component={ () => (<Location location="Shelly Beach" conditions={this.state.conditionsOne}/>)}
-          /> */}
+          <Route
+            path={`/location/${first.replace(/ /g,'_')}`} component={ () => (<Location location="Shelly Beach" conditions={conditionsOne}/>)}
+          />
           {/* <Route
             path={`/location/${locationTwo.replace(/ /g,'_')}`} component={ () => (<Location location="Ballina" conditions={this.state.conditionsTwo} />)}
             />
