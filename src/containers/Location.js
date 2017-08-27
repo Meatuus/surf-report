@@ -7,14 +7,6 @@ import CurrentConditions from '../components/CurrentConditions';
 import ForecastConditions from '../components/ForecastConditions';
 
 class Location extends Component {
-  // constructor(props) {
-  //   super(props)
-  //
-  //   this.state = {
-  //
-  //   }
-  //
-  // }
 
   render() {
 
@@ -38,12 +30,13 @@ class Location extends Component {
     //     />
     //   </div>
     // ));
+    const { conditions, location } = this.props;
 
     return(
       <div>
-        <h2>{this.props.location}</h2>
-        <CurrentConditions conditions={this.props.conditions}/>
-        <ForecastConditions conditions={this.props.conditions}/>
+        <h2>{location}</h2>
+        <CurrentConditions conditions={conditions}/>
+        <ForecastConditions conditions={conditions}/>
       </div>
     );
   }
