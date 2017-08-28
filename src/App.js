@@ -8,6 +8,7 @@ import axios from 'axios';
 // import conditions from './data/conditions';
 import baseData from './data/baseData';
 import Home from './containers/Home';
+import Profile from './containers/Profile';
 // import Locations from './containers/Locations'
 import Location from './containers/Location'
 import './assets/css/App.css';
@@ -87,8 +88,8 @@ class App extends Component {
 
             <ul>
               <Link to="/">Home</Link>{' '}
-              <Link to="/locations">Locations</Link>
-              {/* <Link to="/profile">Profile</Link>{' '} */}
+              {/* <Link to="/locations">Locations</Link> */}
+              <Link to="/profile">Profile</Link>{' '}
             </ul>
           </nav>
           <Route exact path="/" component={
@@ -107,16 +108,13 @@ class App extends Component {
           <Route
             path={`/location/${first.replace(/ /g,'_')}`} component={ () => (<Location location="Shelly Beach" conditions={conditionsOne}/>)}
           />
-          {/* <Route
-            path={`/location/${locationTwo.replace(/ /g,'_')}`} component={ () => (<Location location="Ballina" conditions={this.state.conditionsTwo} />)}
-            />
-            <Route
-            path={`/location/${locationThree.replace(/ /g,'_')}`} component={ () => (<Location location="Byron Bay" conditions={this.state.conditionsThree} />)}
-          /> */}
-          {/* {locationRoutes} */}
-          {/* <Route path="/profile" component={
-            () => (<Profile experiencesList={experiencesList}/>
-          )} /> */}
+          <Route
+            path={`/location/${second.replace(/ /g,'_')}`} component={ () => (<Location location="Ballina" conditions={conditionsTwo} />)}
+          />
+          <Route
+            path={`/location/${third.replace(/ /g,'_')}`} component={ () => (<Location location="Byron Bay" conditions={conditionsThree} />)}
+          />
+          <Route path="/profile" component={Profile} />
         </div>
       </Router>
     );
