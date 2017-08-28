@@ -18,17 +18,20 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: true,
+      alertLocation: "",
+      alertCheckbox: false,
       conditionsOne: baseData,
       conditionsTwo: baseData,
       conditionsThree: baseData,
+      loading: true,
     }
 
     this.loadCommentsFromServer = this.loadCommentsFromServer.bind(this);
+    this.handleAlertLocationInput = this.handleAlertLocationInput.bind(this);
+    this.handleAlertCheckboxInput = this.handleAlertCheckboxInput.bind(this);
   }
 
   loadCommentsFromServer() {
-
     Promise.all([
       axios.get(this.props.urlFirst),
       axios.get(this.props.urlSecond),
@@ -41,34 +44,14 @@ class App extends Component {
         loading: false,
       });
     });
+  }
 
-    // axios.get(this.props.urlFirst)
-    // .then(res => {
-    //   this.setState({
-    //     conditionsOne: res.data,
-    //     loading: false,
-    //   });
-    //   // this.locationOneDays();
-    // });
+  handleAlertLocationInput(location) {
+    this.setState({alertLocation: location});
+  }
 
-    // axios.get(this.props.urlSecond)
-    // .then(res => {
-    //   this.setState({
-    //     conditionsTwo: res.data,
-    //     loading: false,
-    //   });
-    //   // this.dayTwo();
-    // });
-    //
-    // axios.get(this.props.urlThird)
-    // .then(res => {
-    //   this.setState({
-    //     conditionsThree: res.data,
-    //     loading: false,
-    //   });
-    // });
-    // TODO: sort past times and remove from data
-    // TODO: break up conditions state into current and future array
+  handleAlertCheckboxInput(alert) {
+    this.setState({alertCheckbox: alert});
   }
 
   componentDidMount() {
@@ -114,7 +97,17 @@ class App extends Component {
           <Route
             path={`/location/${third.replace(/ /g,'_')}`} component={ () => (<Location location="Byron Bay" conditions={conditionsThree} />)}
           />
-          <Route path="/profile" component={Profile} />
+          <Route path="/profile"
+            component={ () => (
+              <Profile
+                alertLocation={this.state.alertLocation}
+                alertCheckbox={this.state.alertCheckbox}
+                locations={[first, second, third]}
+                onAlertLocationInput={this.handleAlertLocationInput}
+                onAlertCheckboxInput={this.handleAlertCheckboxInput}
+              />
+            )}
+          />
         </div>
       </Router>
     );
