@@ -78,14 +78,14 @@ class Profile extends Component {
       <form>
         <h2>Profile Page</h2>
 
-        <p>
+        {/* <p>
           <input
             type="checkbox"
             checked={this.props.alertCheckbox}
             onChange={this.handleAlertCheckboxInputChange}
           />
           Check to enable alerts
-        </p>
+        </p> */}
         <p>
           <input
             type="checkbox"
