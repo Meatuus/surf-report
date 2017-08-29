@@ -18,11 +18,18 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      alertLocation: "",
-      alertCheckbox: false,
-      alertSwellMin: "",
-      alertSwellMax: "",
-      alertWindDirection: "",
+      // user: {
+      //   alertLocation: "",
+      //   alertCheckbox: false,
+      //   alertSwellMin: "",
+      //   alertSwellMax: "",
+      //   alertWindDirection: "",
+      // },
+      // alertLocation: "",
+      // alertCheckbox: false,
+      // alertSwellMin: "",
+      // alertSwellMax: "",
+      // alertWindDirection: "",
       conditionsOne: baseData,
       conditionsTwo: baseData,
       conditionsThree: baseData,
@@ -30,11 +37,13 @@ class App extends Component {
     }
 
     this.loadCommentsFromServer = this.loadCommentsFromServer.bind(this);
-    this.handleAlertLocationInput = this.handleAlertLocationInput.bind(this);
-    this.handleAlertCheckboxInput = this.handleAlertCheckboxInput.bind(this);
-    this.handleAlertSwellMinInput = this.handleAlertSwellMinInput.bind(this);
-    this.handleAlertSwellMaxInput = this.handleAlertSwellMaxInput.bind(this);
-    this.handleAlertWindDirectionInput = this.handleAlertWindDirectionInput.bind(this);
+    // this.handleAlertLocationInput = this.handleAlertLocationInput.bind(this);
+    // this.handleAlertCheckboxInput = this.handleAlertCheckboxInput.bind(this);
+    // this.handleAlertSwellMinInput = this.handleAlertSwellMinInput.bind(this);
+    // this.handleAlertSwellMaxInput = this.handleAlertSwellMaxInput.bind(this);
+    // this.handleAlertWindDirectionInput = this.handleAlertWindDirectionInput.bind(this);
+
+    // this.handleUserInput = this.handleUserInput.bind(this);
   }
 
   loadCommentsFromServer() {
@@ -52,32 +61,41 @@ class App extends Component {
     });
   }
 
-  handleAlertLocationInput(location) {
-    this.setState({alertLocation: location});
-  }
+  // handleUserInput(e) {
+  //   // create clone of fields object using ES6 spread operator
+  //   let user = {...this.state.user};
+  //   // update specified key in the fields object using the input's name attribute
+  //   user[e.target.name] = e.target.value;
+  //   this.setState({ user });
+  //
+  // }
 
-  handleAlertCheckboxInput(alert) {
-    this.setState({alertCheckbox: alert});
-  }
-
-  handleAlertSwellMinInput(alertSwellMin) {
-    this.setState({alertSwellMin: alertSwellMin});
-  }
-
-  handleAlertSwellMaxInput(swellMax) {
-    this.setState({alertSwellMax: swellMax});
-  }
-
-  handleAlertWindDirectionInput(WindDirection) {
-    this.setState({alertWindDirection: WindDirection});
-  }
+  // handleAlertLocationInput(location) {
+  //   this.setState({alertLocation: location});
+  // }
+  //
+  // handleAlertCheckboxInput(alert) {
+  //   this.setState({alertCheckbox: alert});
+  // }
+  //
+  // handleAlertSwellMinInput(alertSwellMin) {
+  //   this.setState({alertSwellMin: alertSwellMin});
+  // }
+  //
+  // handleAlertSwellMaxInput(swellMax) {
+  //   this.setState({alertSwellMax: swellMax});
+  // }
+  //
+  // handleAlertWindDirectionInput(WindDirection) {
+  //   this.setState({alertWindDirection: WindDirection});
+  // }
 
   componentDidMount() {
     this.loadCommentsFromServer();
   }
 
   render() {
-    const { conditionsOne, conditionsTwo, conditionsThree } = this.state;
+    const { user, conditionsOne, conditionsTwo, conditionsThree } = this.state;
     const { first, second, third } = this.props;
 
     return (
@@ -118,16 +136,18 @@ class App extends Component {
           <Route path="/profile"
             component={ () => (
               <Profile
-                alertLocation={this.state.alertLocation}
-                alertCheckbox={this.state.alertCheckbox}
-                alertSwellMin={this.state.alertSwellMin}
-                alertSwellMax={this.state.alertSwellMax}
-                alertWindDirection={this.state.alertWindDirection}
-                onAlertLocationInput={this.handleAlertLocationInput}
-                onAlertCheckboxInput={this.handleAlertCheckboxInput}
-                onAlertSwellMinInput={this.handleAlertSwellMinInput}
-                onAlertSwellMaxInput={this.handleAlertSwellMaxInput}
-                onAlertWindDirectionInput={this.handleAlertWindDirectionInput}
+                // // user={this.state.user}
+                // alertLocation={this.state.alertLocation}
+                // alertCheckbox={this.state.alertCheckbox}
+                // alertSwellMin={this.state.alertSwellMin}
+                // alertSwellMax={this.state.alertSwellMax}
+                // alertWindDirection={this.state.alertWindDirection}
+                // // onUserInput={this.handleUserInput}
+                // onAlertLocationInput={this.handleAlertLocationInput}
+                // onAlertCheckboxInput={this.handleAlertCheckboxInput}
+                // onAlertSwellMinInput={this.handleAlertSwellMinInput}
+                // onAlertSwellMaxInput={this.handleAlertSwellMaxInput}
+                // onAlertWindDirectionInput={this.handleAlertWindDirectionInput}
                 locations={[first, second, third]}
               />
             )}
