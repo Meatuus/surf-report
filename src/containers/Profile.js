@@ -22,6 +22,7 @@ class Profile extends Component {
     // this.handleAlertWindDirectionInputChange = this.handleAlertWindDirectionInputChange.bind(this);
     // this.handleUserInputChange = this.handleUserInputChange.bind(this);
     this.handleUserInput = this.handleUserInput.bind(this);
+    this.handleAlertCheckboxInput = this.handleAlertCheckboxInput.bind(this);
 
   }
 
@@ -47,6 +48,12 @@ class Profile extends Component {
     this.props.onAlertCheckboxInput(e.target.checked);
   }
 
+  handleAlertCheckboxInput(e) {
+    let user = {...this.state.user};
+    user[e.target.name] = e.target.checked;
+    this.setState({ user });
+  }
+
   // handleAlertSwellMinInputChange(e) {
   //   console.log(e.target.value);
   //   this.props.onAlertSwellMinInput(e.target.value);
@@ -60,22 +67,12 @@ class Profile extends Component {
   //   this.props.onAlertWindDirectionInput(e.target.value);
   // }
 
-  // handleChange(e) {
-  //   let newState = {};
-  //
-  //   newState[e.target.name] = e.target.value;
-  //
-  //   this.setState(newState);
-  // }
-
-
   render() {
     const locationSearch = this.props.locations
 
     const dropdown = locationSearch.map( (item, index) => (
       <option value={item} key={index}>{item}</option>
     ))
-
 
     return(
       <form>
@@ -89,9 +86,26 @@ class Profile extends Component {
           />
           Check to enable alerts
         </p>
-        <label htmlFor="alertLocation">
+        <p>
+          <input
+            type="checkbox"
+            checked={this.state.alertCheckbox}
+            onChange={this.handleAlertCheckboxInput}
+            name="alertCheckbox"
+          />
+          Check to enable alerts
+        </p>
+        {/* <label htmlFor="alertLocation">
           Select a location
           <select value={this.props.alertLocation} onChange={this.handleAlertLocationInputChange} id="alertLocation">
+            <option>All Locations</option>
+            {dropdown}
+          </select>
+          </label>
+        <br/> */}
+        <label htmlFor="alertLocation">
+          Select a location
+          <select value={this.state.user.alertLocation} name="alertLocation" onChange={this.handleUserInput} id="alertLocation">
             <option>All Locations</option>
             {dropdown}
           </select>
@@ -107,29 +121,9 @@ class Profile extends Component {
           id="alertSwellMin"
         /> */}
         <br/>
+
+        <h3>testing results: {this.state.user.alertWindDirection.toUpperCase()}</h3>
         <br/>
-        {/* <label htmlFor="alertSwellMax">Enter Max Swell Height</label>
-          <input
-          type="text"
-          placeholder="Max Swell..."
-          defaultValue={this.props.alertSwellMax}
-          // value={this.props.alertSwellMax}
-          onBlur={this.handleAlertSwellMaxInputChange}
-          id="alertSwellMax"
-          />
-          <br/>
-          <label htmlFor="alertWindDirection">Enter Wind Direction</label>
-          <input
-          type="text"
-          placeholder="Wind Direction..."
-          defaultValue={this.props.alertWindDirection}
-          // value={this.props.alertWindDirection}
-          onBlur={this.handleAlertWindDirectionInputChange}
-          id="alertWindDirection"
-        /> */}
-        {/* <h3>testing results: {this.props.alertWindDirection}</h3> */}
-        <br/>
-        <h1>Second field group</h1>
         <ProfileInput
           type="text"
           id="swellMin"
@@ -153,7 +147,7 @@ class Profile extends Component {
           id="windDirection"
           label="Wind Direction"
           name="alertWindDirection"
-          value={this.state.user.alertWindDirection}
+          value={this.state.user.alertWindDirection.toUpperCase()}
           onChange={this.handleUserInput}
         />
         <br/>
