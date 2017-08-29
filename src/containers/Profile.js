@@ -6,17 +6,40 @@ class Profile extends Component {
 
     this.handleAlertLocationInputChange = this.handleAlertLocationInputChange.bind(this);
     this.handleAlertCheckboxInputChange = this.handleAlertCheckboxInputChange.bind(this);
+    this.handleAlertSwellMinInputChange = this.handleAlertSwellMinInputChange.bind(this);
+    this.handleAlertSwellMaxInputChange = this.handleAlertSwellMaxInputChange.bind(this);
+    this.handleAlertWindDirectionInputChange = this.handleAlertWindDirectionInputChange.bind(this);
   }
 
   handleAlertLocationInputChange(e) {
+    console.log(e.target);
     this.props.onAlertLocationInput(e.target.value);
-    console.log(e);
   }
 
   handleAlertCheckboxInputChange(e) {
     this.props.onAlertCheckboxInput(e.target.checked);
-    console.log(e);
   }
+
+  handleAlertSwellMinInputChange(e) {
+    console.log(e.target.value);
+    this.props.onAlertSwellMinInput(e.target.value);
+  }
+
+  handleAlertSwellMaxInputChange(e) {
+    this.props.onAlertSwellMaxInput(e.target.value);
+  }
+
+  handleAlertWindDirectionInputChange(e) {
+    this.props.onAlertWindDirectionInput(e.target.value);
+  }
+
+  // handleChange(e) {
+  //   let newState = {};
+  //
+  //   newState[e.target.name] = e.target.value;
+  //
+  //   this.setState(newState);
+  // }
 
   render() {
     const locationSearch = this.props.locations
@@ -39,7 +62,6 @@ class Profile extends Component {
             type="checkbox"
             checked={this.props.alertCheckbox}
             onChange={this.handleAlertCheckboxInputChange}
-            on
           />
           Check to enable alerts
         </p>
@@ -50,6 +72,38 @@ class Profile extends Component {
             {dropdown}
           </select>
         </label>
+        <br></br>
+        <label htmlFor="alertSwellMin">Enter Min Swell Height</label>
+        <input
+          type="text"
+          placeholder="Min Swell..."
+          defaultValue={this.props.alertSwellMin}
+          // value={this.props.alertSwellMin}
+          onBlur={this.handleAlertSwellMinInputChange}
+          id="alertSwellMin"
+        />
+        <br></br>
+        <label htmlFor="alertSwellMax">Enter Max Swell Height</label>
+        <input
+          type="text"
+          placeholder="Max Swell..."
+          defaultValue={this.props.alertSwellMax}
+          // value={this.props.alertSwellMax}
+          onBlur={this.handleAlertSwellMaxInputChange}
+          id="alertSwellMax"
+        />
+        <br></br>
+        <label htmlFor="alertWindDirection">Enter Wind Direction</label>
+        <input
+          type="text"
+          placeholder="Wind Direction..."
+          defaultValue={this.props.alertWindDirection}
+          // value={this.props.alertWindDirection}
+          onBlur={this.handleAlertWindDirectionInputChange}
+          id="alertWindDirection"
+        />
+        <br></br>
+        <button type="submit">Submit</button>
       </form>
     );
   }
