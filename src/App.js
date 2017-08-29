@@ -20,6 +20,9 @@ class App extends Component {
     this.state = {
       alertLocation: "",
       alertCheckbox: false,
+      alertSwellMin: "",
+      alertSwellMax: "",
+      alertWindDirection: "",
       conditionsOne: baseData,
       conditionsTwo: baseData,
       conditionsThree: baseData,
@@ -29,6 +32,9 @@ class App extends Component {
     this.loadCommentsFromServer = this.loadCommentsFromServer.bind(this);
     this.handleAlertLocationInput = this.handleAlertLocationInput.bind(this);
     this.handleAlertCheckboxInput = this.handleAlertCheckboxInput.bind(this);
+    this.handleAlertSwellMinInput = this.handleAlertSwellMinInput.bind(this);
+    this.handleAlertSwellMaxInput = this.handleAlertSwellMaxInput.bind(this);
+    this.handleAlertWindDirectionInput = this.handleAlertWindDirectionInput.bind(this);
   }
 
   loadCommentsFromServer() {
@@ -52,6 +58,18 @@ class App extends Component {
 
   handleAlertCheckboxInput(alert) {
     this.setState({alertCheckbox: alert});
+  }
+
+  handleAlertSwellMinInput(alertSwellMin) {
+    this.setState({alertSwellMin: alertSwellMin});
+  }
+
+  handleAlertSwellMaxInput(swellMax) {
+    this.setState({alertSwellMax: swellMax});
+  }
+
+  handleAlertWindDirectionInput(WindDirection) {
+    this.setState({alertWindDirection: WindDirection});
   }
 
   componentDidMount() {
@@ -102,9 +120,15 @@ class App extends Component {
               <Profile
                 alertLocation={this.state.alertLocation}
                 alertCheckbox={this.state.alertCheckbox}
-                locations={[first, second, third]}
+                alertSwellMin={this.state.alertSwellMin}
+                alertSwellMax={this.state.alertSwellMax}
+                alertWindDirection={this.state.alertWindDirection}
                 onAlertLocationInput={this.handleAlertLocationInput}
                 onAlertCheckboxInput={this.handleAlertCheckboxInput}
+                onAlertSwellMinInput={this.handleAlertSwellMinInput}
+                onAlertSwellMaxInput={this.handleAlertSwellMaxInput}
+                onAlertWindDirectionInput={this.handleAlertWindDirectionInput}
+                locations={[first, second, third]}
               />
             )}
           />
