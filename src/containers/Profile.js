@@ -7,6 +7,7 @@ class Profile extends Component {
 
     this.state = {
       user: {
+        username: "",
         alertLocation: "",
         alertCheckbox: false,
         alertSwellMin: "",
@@ -25,6 +26,9 @@ class Profile extends Component {
     this.handleAlertCheckboxInput = this.handleAlertCheckboxInput.bind(this);
 
   }
+  // TODO: on login - fill state with what's in database
+  // TODO: on signup - log user in
+  // TODO: add put request to update user
 
   handleUserInput(e) {
     // create clone of fields object using ES6 spread operator
@@ -75,84 +79,86 @@ class Profile extends Component {
     ))
 
     return(
-      <form>
-        <h2>Profile Page</h2>
+      <div>
+        <form>
+          <h2>Profile Page</h2>
 
-        {/* <p>
-          <input
+          {/* <p>
+            <input
             type="checkbox"
             checked={this.props.alertCheckbox}
             onChange={this.handleAlertCheckboxInputChange}
-          />
-          Check to enable alerts
-        </p> */}
-        <p>
-          <input
-            type="checkbox"
-            checked={this.state.alertCheckbox}
-            onChange={this.handleAlertCheckboxInput}
-            name="alertCheckbox"
-          />
-          Check to enable alerts
-        </p>
-        {/* <label htmlFor="alertLocation">
-          Select a location
-          <select value={this.props.alertLocation} onChange={this.handleAlertLocationInputChange} id="alertLocation">
+            />
+            Check to enable alerts
+          </p> */}
+          <p>
+            <input
+              type="checkbox"
+              checked={this.state.alertCheckbox}
+              onChange={this.handleAlertCheckboxInput}
+              name="alertCheckbox"
+            />
+            Check to enable alerts
+          </p>
+          {/* <label htmlFor="alertLocation">
+            Select a location
+            <select value={this.props.alertLocation} onChange={this.handleAlertLocationInputChange} id="alertLocation">
             <option>All Locations</option>
             {dropdown}
-          </select>
+            </select>
+            </label>
+          <br/> */}
+          <label htmlFor="alertLocation">
+            Select a location
+            <select value={this.state.user.alertLocation} name="alertLocation" onChange={this.handleUserInput} id="alertLocation">
+              <option>All Locations</option>
+              {dropdown}
+            </select>
           </label>
-        <br/> */}
-        <label htmlFor="alertLocation">
-          Select a location
-          <select value={this.state.user.alertLocation} name="alertLocation" onChange={this.handleUserInput} id="alertLocation">
-            <option>All Locations</option>
-            {dropdown}
-          </select>
-        </label>
-        <br/>
-        {/* <label htmlFor="alertSwellMin">Enter Min Swell Height</label>
-          <input
-          type="text"
-          placeholder="Min Swell..."
-          defaultValue={this.props.alertSwellMin}
-          // value={this.props.alertSwellMin}
-          onBlur={this.handleAlertSwellMinInputChange}
-          id="alertSwellMin"
-        /> */}
-        <br/>
+          <br/>
+          {/* <label htmlFor="alertSwellMin">Enter Min Swell Height</label>
+            <input
+            type="text"
+            placeholder="Min Swell..."
+            defaultValue={this.props.alertSwellMin}
+            // value={this.props.alertSwellMin}
+            onBlur={this.handleAlertSwellMinInputChange}
+            id="alertSwellMin"
+          /> */}
+          <br/>
 
-        <h3>testing results: {this.state.user.alertWindDirection.toUpperCase()}</h3>
-        <br/>
-        <ProfileInput
-          type="text"
-          id="swellMin"
-          label="Min Swell"
-          name="alertSwellMin"
-          value={this.state.user.alertSwellMin}
-          onChange={this.handleUserInput}
-        />
-        <br/>
-        <ProfileInput
-          type="text"
-          id="swellMax"
-          label="Max Swell"
-          name="alertSwellMax"
-          value={this.state.user.alertSwellMax}
-          onChange={this.handleUserInput}
-        />
-        <br/>
-        <ProfileInput
-          type="text"
-          id="windDirection"
-          label="Wind Direction"
-          name="alertWindDirection"
-          value={this.state.user.alertWindDirection.toUpperCase()}
-          onChange={this.handleUserInput}
-        />
-        <br/>
-        <button type="submit">Submit</button>
-      </form>
+          <h3>testing results: {this.state.user.alertWindDirection.toUpperCase()}</h3>
+          <br/>
+          <ProfileInput
+            type="text"
+            id="swellMin"
+            label="Min Swell"
+            name="alertSwellMin"
+            value={this.state.user.alertSwellMin}
+            onChange={this.handleUserInput}
+          />
+          <br/>
+          <ProfileInput
+            type="text"
+            id="swellMax"
+            label="Max Swell"
+            name="alertSwellMax"
+            value={this.state.user.alertSwellMax}
+            onChange={this.handleUserInput}
+          />
+          <br/>
+          <ProfileInput
+            type="text"
+            id="windDirection"
+            label="Wind Direction"
+            name="alertWindDirection"
+            value={this.state.user.alertWindDirection.toUpperCase()}
+            onChange={this.handleUserInput}
+          />
+          <br/>
+          <button type="submit">Submit</button>
+        </form>
+      </div>
     );
   }
 }
