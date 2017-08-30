@@ -1,7 +1,8 @@
 'use strict'
 
 var express = require('express');
-var mongoose = require('mongoose');
+// var mongoose = require('mongoose');
+const user = require('./user')
 var bodyParser = require('body-parser');
 var cors = require('cors');
 var request = require('request');
@@ -67,6 +68,15 @@ app.get('/api/byronbay', (req, res) => (
     }
   })
 ))
+
+app.post('/api/users', (req, res) => {
+  user
+    .createUser({
+      username: req.body.username,
+      password: req.body.password
+    })
+    .then(() => res.sendStatus(200))
+})
 
 //Use our router configuration when we call /api
 app.use('/api', router);
