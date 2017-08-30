@@ -2,7 +2,8 @@
 
 var express = require('express');
 // var mongoose = require('mongoose');
-const user = require('./user')
+const user = require('./user');
+var Users = require('./model/users');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 var request = require('request');
@@ -68,6 +69,14 @@ app.get('/api/byronbay', (req, res) => (
     }
   })
 ))
+
+app.get('/api/users', (req, res) => {
+  Users
+    .fetchAll()
+    .then(function(users) {
+        res.json({ users });
+      });
+})
 
 app.post('/api/users', (req, res) => {
   user
