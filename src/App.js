@@ -124,6 +124,8 @@ class App extends Component {
               <Link to="/">Home</Link>{' '}
               {/* <Link to="/locations">Locations</Link> */}
               <Link to="/profile">Profile</Link>{' '}
+              <Link to="/login">Log in</Link>{' '}
+              <Link to="/signup">Sign Up</Link>{' '}
             </ul>
           </nav>
           <Route exact path="/" component={
@@ -149,7 +151,10 @@ class App extends Component {
             path={`/location/${third.replace(/ /g,'_')}`} component={ () => (<Location location="Byron Bay" conditions={conditionsThree} />)}
           />
           <Route
-            path="/users" component={ () => (<CreateUser onCommentSubmit={ this.handleCommentSubmit } />)}
+            path="/login" component={ () => (<CreateUser onCommentSubmit={ this.handleCommentSubmit } />)}
+          />
+          <Route
+            path="/signup" component={ () => (<CreateUser onCommentSubmit={ this.handleCommentSubmit } />)}
           />
           <Route path="/profile"
             component={ () => (
