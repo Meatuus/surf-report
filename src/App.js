@@ -9,6 +9,7 @@ import axios from 'axios';
 import baseData from './data/baseData';
 import Home from './containers/Home';
 import Profile from './containers/Profile';
+import CreateUser from './components/CreateUser';
 // import Locations from './containers/Locations'
 import Location from './containers/Location'
 import './assets/css/App.css';
@@ -18,6 +19,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      currentUser: false,
       // user: {
       //   alertLocation: "",
       //   alertCheckbox: false,
@@ -61,6 +63,19 @@ class App extends Component {
     });
   }
 
+  // handleCommentSubmit(user) {
+  //   // let comments = this.state.data;
+  //   // comment.id = Date.now();
+  //   // let newComments = comments.concat([comment]);
+  //   // this.setState({ data: newComments });
+  //
+  //   axios.post("http://localhost:3001/createUser", user)
+  //     .catch(err => {
+  //       console.error(err);
+  //       // this.setState({ user: comments });
+  //     });
+  // }
+
   // handleUserInput(e) {
   //   // create clone of fields object using ES6 spread operator
   //   let user = {...this.state.user};
@@ -95,7 +110,7 @@ class App extends Component {
   }
 
   render() {
-    const { user, conditionsOne, conditionsTwo, conditionsThree } = this.state;
+    const { conditionsOne, conditionsTwo, conditionsThree } = this.state;
     const { first, second, third } = this.props;
 
     return (
@@ -132,6 +147,9 @@ class App extends Component {
           />
           <Route
             path={`/location/${third.replace(/ /g,'_')}`} component={ () => (<Location location="Byron Bay" conditions={conditionsThree} />)}
+          />
+          <Route
+            path="/users" component={ () => (<CreateUser onCommentSubmit={ this.handleCommentSubmit } />)}
           />
           <Route path="/profile"
             component={ () => (
