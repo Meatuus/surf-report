@@ -83,7 +83,7 @@ app.get('/api/users/:username', (req, res) => {
     .where('username', req.params.username)
     .fetch()
     .then(function(user) {
-      res.json({user})
+      res.json(user)
     })
 })
 
