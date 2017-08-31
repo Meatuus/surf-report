@@ -33,6 +33,7 @@ class Login extends Component {
     }).then(res => {
       if (res.data.password === password) {
         console.log('passwords match');
+        this.props.onLogin(username);
       }
       console.log(`response:: ${res.data.username}, ${res.data.password}`);
     }).catch(err => {
