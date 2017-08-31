@@ -31,6 +31,7 @@ class CreateUser extends Component {
     axios.post("http://localhost:3001/api/users", {
       username: username,
       password: password,
+      alert: false,
       })
       .then(response => {
         console.log(`response:: ${response}`);
