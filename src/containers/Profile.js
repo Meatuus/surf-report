@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import ProfileInput from '../components/ProfileInput';
+import axios from 'axios';
 
 class Profile extends Component {
   constructor(props) {
@@ -24,7 +25,7 @@ class Profile extends Component {
     // this.handleUserInputChange = this.handleUserInputChange.bind(this);
     this.handleUserInput = this.handleUserInput.bind(this);
     this.handleAlertCheckboxInput = this.handleAlertCheckboxInput.bind(this);
-
+    this.handleUserLoad = this.handleUserLoad.bind(this);
   }
   // TODO: on login - fill state with what's in database
   // TODO: on signup - log user in
@@ -70,6 +71,39 @@ class Profile extends Component {
   // handleAlertWindDirectionInputChange(e) {
   //   this.props.onAlertWindDirectionInput(e.target.value);
   // }
+
+  handleUserLoad() {
+    let username = this.props.user;
+
+    // this.setState({
+    //   user: {username: username}
+    // })
+    axios.get(`http://localhost:3001/api/users/${username}`, {
+      username: username,
+    }).then(res => {
+      // if (res.data.password === password) {
+      //   console.log('passwords match');
+      //   this.props.onLogin(username);
+      // }
+      this.setState({
+        user: {
+          username: res.data.username,
+          alertLocation: res.data.location,
+          // alertCheckbox: res.data.alert,
+          alertSwellMin: res.data.minSwell,
+          alertSwellMax: res.data.maxSwell,
+          alertWindDirection: res.data.wind,
+        }
+      })
+      console.log(`response:: ${res.data.username}, ${res.data.password}`);
+    }).catch(err => {
+      console.error(`errors:: ${err}`);
+    })
+  }
+
+  componentWillMount() {
+    this.handleUserLoad();
+  }
 
   render() {
     const locationSearch = this.props.locations
@@ -127,7 +161,7 @@ class Profile extends Component {
           /> */}
           <br/>
 
-          <h3>testing results: {this.state.user.alertWindDirection.toUpperCase()}</h3>
+          <h3>testing results: {this.state.user.alertWindDirection}</h3>
           <br/>
           <ProfileInput
             type="text"
@@ -152,7 +186,7 @@ class Profile extends Component {
             id="windDirection"
             label="Wind Direction"
             name="alertWindDirection"
-            value={this.state.user.alertWindDirection.toUpperCase()}
+            value={this.state.user.alertWindDirection}
             onChange={this.handleUserInput}
           />
           <br/>
