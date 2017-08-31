@@ -9,6 +9,7 @@ import axios from 'axios';
 import baseData from './data/baseData';
 import Home from './containers/Home';
 import Profile from './containers/Profile';
+import Login from './containers/Login';
 import CreateUser from './components/CreateUser';
 // import Locations from './containers/Locations'
 import Location from './containers/Location'
@@ -20,6 +21,7 @@ class App extends Component {
     super(props);
     this.state = {
       currentUser: false,
+      username: "",
       // user: {
       //   alertLocation: "",
       //   alertCheckbox: false,
@@ -46,6 +48,7 @@ class App extends Component {
     // this.handleAlertWindDirectionInput = this.handleAlertWindDirectionInput.bind(this);
 
     // this.handleUserInput = this.handleUserInput.bind(this);
+    this.handleUserLogin = this.handleUserLogin.bind(this);
   }
 
   loadCommentsFromServer() {
@@ -61,6 +64,10 @@ class App extends Component {
         loading: false,
       });
     });
+  }
+
+  handleUserLogin(username) {
+    this.setState({ username: username })
   }
 
   // handleCommentSubmit(user) {
@@ -151,14 +158,15 @@ class App extends Component {
             path={`/location/${third.replace(/ /g,'_')}`} component={ () => (<Location location="Byron Bay" conditions={conditionsThree} />)}
           />
           <Route
-            path="/login" component={ () => (<CreateUser onCommentSubmit={ this.handleCommentSubmit } />)}
+            path="/login" component={ () => (<Login onLogin={this.handleUserLogin} onCommentSubmit={ this.handleCommentSubmit } />)}
           />
           <Route
-            path="/signup" component={ () => (<CreateUser onCommentSubmit={ this.handleCommentSubmit } />)}
+            path="/signup" component={ () => (<CreateUser onLogin={this.handleUserLogin} onCommentSubmit={ this.handleCommentSubmit } />)}
           />
           <Route path="/profile"
             component={ () => (
               <Profile
+                user={this.state.username}
                 // // user={this.state.user}
                 // alertLocation={this.state.alertLocation}
                 // alertCheckbox={this.state.alertCheckbox}
