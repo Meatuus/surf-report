@@ -67,7 +67,7 @@ class App extends Component {
   }
 
   handleUserLogin(username) {
-    this.setState({ username: username })
+    this.setState({ username: username, currentUser: true })
   }
 
   // handleCommentSubmit(user) {
