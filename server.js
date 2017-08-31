@@ -91,7 +91,8 @@ app.post('/api/users', (req, res) => {
   user
     .createUser({
       username: req.body.username,
-      password: req.body.password
+      password: req.body.password,
+      alert: req.body.alert
     })
     .then(() => res.sendStatus(200))
 })
@@ -105,6 +106,10 @@ app.put('/api/users/:username', (req, res) => {
         .save({
           username: req.body.username,
           password: req.body.password,
+          alert: req.body.alert,
+          minSwell: req.body.minSwell,
+          maxSwell: req.body.maxSwell,
+          wind: req.body.wind,
           location: req.body.location,
         })
         .then(function(saved) {
