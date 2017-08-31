@@ -87,6 +87,32 @@ app.post('/api/users', (req, res) => {
     .then(() => res.sendStatus(200))
 })
 
+app.put('/api/users/:id', (req, res) => {
+  Users
+    .where('id', req.params.id)
+    .fetch()
+    .then(function(user) {
+      user
+        .save({
+          username: req.body.username,
+          password: req.body.password,
+          location: req.body.location,
+        })
+        .then(function(saved) {
+          res.json({ saved });
+        });
+    });
+})
+
+app.delete('/api/users/:id', (req, res) => {
+  Users
+    .where('id', req.params.id)
+    .destroy()
+    .then(function(destroyed) {
+      res.json({ destroyed });
+    });
+})
+
 //Use our router configuration when we call /api
 app.use('/api', router);
 
