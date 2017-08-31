@@ -10,7 +10,7 @@ class Profile extends Component {
       user: {
         username: "",
         alertLocation: "",
-        alertCheckbox: false,
+        alertCheckbox: true,
         alertSwellMin: "",
         alertSwellMax: "",
         alertWindDirection: "",
@@ -75,21 +75,15 @@ class Profile extends Component {
   handleUserLoad() {
     let username = this.props.user;
 
-    // this.setState({
-    //   user: {username: username}
-    // })
     axios.get(`http://localhost:3001/api/users/${username}`, {
       username: username,
     }).then(res => {
-      // if (res.data.password === password) {
-      //   console.log('passwords match');
-      //   this.props.onLogin(username);
-      // }
+      let alert = res.data.alert === 0 ? false : true;
       this.setState({
         user: {
           username: res.data.username,
           alertLocation: res.data.location,
-          // alertCheckbox: res.data.alert,
+          alertCheckbox: alert,
           alertSwellMin: res.data.minSwell,
           alertSwellMax: res.data.maxSwell,
           alertWindDirection: res.data.wind,
