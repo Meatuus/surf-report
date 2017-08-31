@@ -10,15 +10,15 @@ class Profile extends Component {
       user: {
         username: "",
         alertLocation: "",
-        alertCheckbox: true,
+        alertCheckbox: false,
         alertSwellMin: "",
         alertSwellMax: "",
         alertWindDirection: "",
       }
     }
 
-    this.handleAlertLocationInputChange = this.handleAlertLocationInputChange.bind(this);
-    this.handleAlertCheckboxInputChange = this.handleAlertCheckboxInputChange.bind(this);
+    // this.handleAlertLocationInputChange = this.handleAlertLocationInputChange.bind(this);
+    // this.handleAlertCheckboxInputChange = this.handleAlertCheckboxInputChange.bind(this);
     // this.handleAlertSwellMinInputChange = this.handleAlertSwellMinInputChange.bind(this);
     // this.handleAlertSwellMaxInputChange = this.handleAlertSwellMaxInputChange.bind(this);
     // this.handleAlertWindDirectionInputChange = this.handleAlertWindDirectionInputChange.bind(this);
@@ -26,6 +26,7 @@ class Profile extends Component {
     this.handleUserInput = this.handleUserInput.bind(this);
     this.handleAlertCheckboxInput = this.handleAlertCheckboxInput.bind(this);
     this.handleUserLoad = this.handleUserLoad.bind(this);
+    this.handleAlertSubmit = this.handleAlertSubmit.bind(this);
   }
   // TODO: on login - fill state with what's in database
   // TODO: on signup - log user in
@@ -44,15 +45,44 @@ class Profile extends Component {
   //   this.props.onUserInput(e);
   // }
 
-  handleAlertLocationInputChange(e) {
-    console.log(e.target);
-    this.props.onAlertLocationInput(e.target.value);
+  handleAlertSubmit(e) {
+    e.preventDefault();
+    const { username, alertLocation, alertCheckbox, alertSwellMin, alertSwellMax, alertWindDirection } = this.state.user;
+
+    axios.put(`http://localhost:3001/api/users/${username}`, {
+      username: username,
+      alert: alertCheckbox,
+      SwellMin: alertSwellMin,
+      SwellMax: alertSwellMax,
+      wind: alertWindDirection,
+      location: alertLocation,
+    }).then(res => {
+      // let alert = res.data.alert === 0 ? false : true;
+      // this.setState({
+      //   user: {
+      //     username: res.data.username,
+      //     alertLocation: res.data.location,
+      //     alertCheckbox: alert,
+      //     alertSwellMin: res.data.SwellMin,
+      //     alertSwellMax: res.data.SwellMax,
+      //     alertWindDirection: res.data.wind,
+      //   }
+      // })
+      console.log(`saved user:: ${res.data.username}`);
+    }).catch(err => {
+      console.error(`errors:: ${err}`);
+    })
   }
 
-  handleAlertCheckboxInputChange(e) {
-    this.props.onAlertCheckboxInput(e.target.checked);
-  }
-
+  // handleAlertLocationInputChange(e) {
+  //   console.log(e.target);
+  //   this.props.onAlertLocationInput(e.target.value);
+  // }
+  //
+  // handleAlertCheckboxInputChange(e) {
+  //   this.props.onAlertCheckboxInput(e.target.checked);
+  // }
+  //
   handleAlertCheckboxInput(e) {
     let user = {...this.state.user};
     user[e.target.name] = e.target.checked;
@@ -73,10 +103,10 @@ class Profile extends Component {
   // }
 
   handleUserLoad() {
-    let username = this.props.user;
+    let user = this.props.user;
 
-    axios.get(`http://localhost:3001/api/users/${username}`, {
-      username: username,
+    axios.get(`http://localhost:3001/api/users/${user}`, {
+      username: user,
     }).then(res => {
       let alert = res.data.alert === 0 ? false : true;
       this.setState({
@@ -84,8 +114,8 @@ class Profile extends Component {
           username: res.data.username,
           alertLocation: res.data.location,
           alertCheckbox: alert,
-          alertSwellMin: res.data.minSwell,
-          alertSwellMax: res.data.maxSwell,
+          alertSwellMin: res.data.SwellMin,
+          alertSwellMax: res.data.SwellMax,
           alertWindDirection: res.data.wind,
         }
       })
@@ -108,8 +138,8 @@ class Profile extends Component {
 
     return(
       <div>
-        <form>
-          <h2>Profile Page</h2>
+        <form onSubmit={this.handleAlertSubmit}>
+          <h2>Profile Page :: {this.state.user.username}</h2>
 
           {/* <p>
             <input
@@ -155,7 +185,6 @@ class Profile extends Component {
           /> */}
           <br/>
 
-          <h3>testing results: {this.state.user.alertWindDirection}</h3>
           <br/>
           <ProfileInput
             type="text"
