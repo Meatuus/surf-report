@@ -78,6 +78,15 @@ app.get('/api/users', (req, res) => {
       });
 })
 
+app.get('/api/users/:username', (req, res) => {
+  Users
+    .where('username', req.params.username)
+    .fetch()
+    .then(function(user) {
+      res.json({user})
+    })
+})
+
 app.post('/api/users', (req, res) => {
   user
     .createUser({
@@ -87,9 +96,9 @@ app.post('/api/users', (req, res) => {
     .then(() => res.sendStatus(200))
 })
 
-app.put('/api/users/:id', (req, res) => {
+app.put('/api/users/:username', (req, res) => {
   Users
-    .where('id', req.params.id)
+    .where('username', req.params.username)
     .fetch()
     .then(function(user) {
       user
