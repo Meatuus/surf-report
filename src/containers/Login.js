@@ -4,7 +4,10 @@ import axios from 'axios';
 class Login extends Component {
   constructor(props) {
     super(props);
-    this.state = { username: '', password: '' };
+    this.state = {
+      username: '',
+      password: '',
+    };
 
     this.handleUserChange = this.handleUserChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
@@ -39,19 +42,6 @@ class Login extends Component {
     }).catch(err => {
       console.error(`errors:: ${err}`);
     })
-
-    // axios.post("http://localhost:3001/api/users", {
-    //   username: username,
-    //   password: password,
-    //   })
-    //   .then(response => {
-    //     console.log(`response:: ${response}`);
-    //   })
-    //   .catch(err => {
-    //     console.error(`errors:: ${err}`);
-    //   });
-    //   this.setState({ username: '', password: '' });
-
   }
 
 
@@ -69,6 +59,8 @@ class Login extends Component {
   // }
 
   render() {
+    const { username, password } = this.state;
+
     return (
       <div>
         <h2>Login Page</h2>
@@ -76,13 +68,13 @@ class Login extends Component {
           <input
             type='text'
             placeholder='User Name'
-            value={ this.state.username }
+            value={ username }
             onChange={ this.handleUserChange }
           />
           <input
             type='password'
             placeholder='Password'
-            value={ this.state.password }
+            value={ password }
             onChange={ this.handlePasswordChange }
           />
           <input
