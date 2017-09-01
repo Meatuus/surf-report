@@ -107,8 +107,8 @@ app.put('/api/users/:username', (req, res) => {
           username: req.body.username,
           password: req.body.password,
           alert: req.body.alert,
-          minSwell: req.body.minSwell,
-          maxSwell: req.body.maxSwell,
+          SwellMin: req.body.SwellMin,
+          SwellMax: req.body.SwellMax,
           wind: req.body.wind,
           location: req.body.location,
         })
