@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {
   BrowserRouter as Router,
+  Redirect,
   Route,
   Link
 } from 'react-router-dom';
@@ -117,8 +118,27 @@ class App extends Component {
   }
 
   render() {
-    const { conditionsOne, conditionsTwo, conditionsThree } = this.state;
+    const { conditionsOne, conditionsTwo, conditionsThree, currentUser } = this.state;
     const { first, second, third } = this.props;
+
+    // const currentUser = currentUser ? (
+    //   <ul>
+    //     <li><Link to="/">Home</Link>{' '}</li>
+    //     <li><Link to="/profile">Profile</Link>{' '}</li>
+    //     <li><Link >Sign Out</Link></li>
+    //   </ul>
+    // ) : (
+    //   <ul>
+    //     <li><Link to="/">Home</Link>{' '}</li>
+    //     <li><Link to="/login">Log in</Link>{' '}</li>
+    //     <li><Link to="/signup">Sign Up</Link></li>
+    //   </ul>
+    // )
+    // const signOut = currentUser ? (
+    //   <li>{' '}<Link>Sign Out</Link></li>
+    // ) : (
+    //   <li>{' '}<Link to="/login">Sign In</Link></li>
+    // )
 
     return (
       <Router>
@@ -128,11 +148,15 @@ class App extends Component {
             <h1>Surf Alert</h1>
 
             <ul>
-              <Link to="/">Home</Link>{' '}
+              <li><Link to="/">Home</Link>{' '}</li>
               {/* <Link to="/locations">Locations</Link> */}
-              <Link to="/profile">Profile</Link>{' '}
-              <Link to="/login">Log in</Link>{' '}
-              <Link to="/signup">Sign Up</Link>{' '}
+              <li><Link to="/profile">Profile</Link></li>
+              {/* <Link to="/login">Log in</Link>{' '}
+              <Link to="/signup">Sign Up</Link>{' '} */}
+
+              {/* {signOut} */}
+
+
             </ul>
           </nav>
           <Route exact path="/" component={
@@ -158,29 +182,53 @@ class App extends Component {
             path={`/location/${third.replace(/ /g,'_')}`} component={ () => (<Location location="Byron Bay" conditions={conditionsThree} />)}
           />
           <Route
-            path="/login" component={ () => (<Login onLogin={this.handleUserLogin} onCommentSubmit={ this.handleCommentSubmit } />)}
+            path="/login" component={ () => (
+              currentUser ? (
+                <Redirect to="/profile" />
+              ) : (
+                <Login onLogin={this.handleUserLogin} onCommentSubmit={ this.handleCommentSubmit } />
+              )
+            )}
           />
           <Route
-            path="/signup" component={ () => (<CreateUser onLogin={this.handleUserLogin} onCommentSubmit={ this.handleCommentSubmit } />)}
+            path="/signup" component={ () => (
+              currentUser ? (
+                <Redirect to="/profile" />
+              ) : (
+                <CreateUser onLogin={this.handleUserLogin} onCommentSubmit={ this.handleCommentSubmit } />
+              )
+            )}
           />
+          {/* <Route exact path="/" render={() => (
+            loggedIn ? (
+            <Redirect to="/dashboard"/>
+            ) : (
+            <PublicHomePage/>
+            )
+          )}/> */}
           <Route path="/profile"
             component={ () => (
-              <Profile
-                user={this.state.username}
-                // // user={this.state.user}
-                // alertLocation={this.state.alertLocation}
-                // alertCheckbox={this.state.alertCheckbox}
-                // alertSwellMin={this.state.alertSwellMin}
-                // alertSwellMax={this.state.alertSwellMax}
-                // alertWindDirection={this.state.alertWindDirection}
-                // // onUserInput={this.handleUserInput}
-                // onAlertLocationInput={this.handleAlertLocationInput}
-                // onAlertCheckboxInput={this.handleAlertCheckboxInput}
-                // onAlertSwellMinInput={this.handleAlertSwellMinInput}
-                // onAlertSwellMaxInput={this.handleAlertSwellMaxInput}
-                // onAlertWindDirectionInput={this.handleAlertWindDirectionInput}
-                locations={[first, second, third]}
-              />
+              currentUser ? (
+                <Profile
+                  user={this.state.username}
+                  // // user={this.state.user}
+                  // alertLocation={this.state.alertLocation}
+                  // alertCheckbox={this.state.alertCheckbox}
+                  // alertSwellMin={this.state.alertSwellMin}
+                  // alertSwellMax={this.state.alertSwellMax}
+                  // alertWindDirection={this.state.alertWindDirection}
+                  // // onUserInput={this.handleUserInput}
+                  // onAlertLocationInput={this.handleAlertLocationInput}
+                  // onAlertCheckboxInput={this.handleAlertCheckboxInput}
+                  // onAlertSwellMinInput={this.handleAlertSwellMinInput}
+                  // onAlertSwellMaxInput={this.handleAlertSwellMaxInput}
+                  // onAlertWindDirectionInput={this.handleAlertWindDirectionInput}
+                  locations={[first, second, third]}
+                />
+              ) : (
+                <Redirect to="/login" />
+              )
+
             )}
           />
         </div>
