@@ -34,6 +34,7 @@ class CreateUser extends Component {
       alert: false,
       })
       .then(response => {
+        this.props.onLogin(username);
         console.log(`response:: ${response}`);
       })
       .catch(err => {
