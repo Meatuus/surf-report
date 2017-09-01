@@ -4,7 +4,7 @@ import axios from 'axios';
 class CreateUser extends Component {
   constructor(props) {
     super(props);
-    this.state = { username: '', password: '' };
+    this.state = { username: '', password: '', originalUser: '' };
 
     this.handleUserChange = this.handleUserChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
@@ -28,19 +28,52 @@ class CreateUser extends Component {
       return;
     }
 
-    axios.post("http://localhost:3001/api/users", {
+    axios.get(`http://localhost:3001/api/users/${username}`, {
       username: username,
-      password: password,
-      alert: false,
-      })
-      .then(response => {
-        this.props.onLogin(username);
-        console.log(`response:: ${response}`);
-      })
-      .catch(err => {
-        console.error(`errors:: ${err}`);
-      });
-      this.setState({ username: '', password: '' });
+    }).then(res => {
+      // console.log(`response:: ${res.data.username}, ${res.data.password}`);
+      console.log(res.data);
+      if (res.data === null) {
+        this.setState({originalUser: true});
+        axios.post("http://localhost:3001/api/users", {
+          username: username,
+          password: password,
+          alert: false,
+          })
+          .then(response => {
+            this.props.onLogin(username);
+            console.log(`response:: ${response}`);
+          })
+          .catch(err => {
+            console.error(`errors:: ${err}`);
+          });
+          this.setState({ username: '', password: '' });
+      } else {
+        this.setState({originalUser: false})
+      }
+    }).catch(err => {
+      console.error(`errors:: ${err}`);
+    })
+    // if {
+    //   console.log('equals null');
+    // } else {
+    //   console.log('user taken');
+    // }
+
+
+    // axios.post("http://localhost:3001/api/users", {
+    //   username: username,
+    //   password: password,
+    //   alert: false,
+    //   })
+    //   .then(response => {
+    //     this.props.onLogin(username);
+    //     console.log(`response:: ${response}`);
+    //   })
+    //   .catch(err => {
+    //     console.error(`errors:: ${err}`);
+    //   });
+    //   this.setState({ username: '', password: '' });
 
     // this.props.onCommentSubmit({ user: user, password: password });
     // fetch("http://localhost:3001/api/users", {
@@ -79,6 +112,7 @@ class CreateUser extends Component {
   // }
 
   render() {
+    const original = this.state.originalUser === false ? <p>Username is taken</p> : null;
     return (
       <form onSubmit={ this.handleSubmit }>
         <input
@@ -97,6 +131,7 @@ class CreateUser extends Component {
           type='submit'
           value='Post'
         />
+        {original}
       </form>
     )
   }
