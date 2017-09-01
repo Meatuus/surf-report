@@ -50,6 +50,7 @@ class App extends Component {
 
     // this.handleUserInput = this.handleUserInput.bind(this);
     this.handleUserLogin = this.handleUserLogin.bind(this);
+    this.handleSignOut = this.handleSignOut.bind(this);
   }
 
   loadCommentsFromServer() {
@@ -69,6 +70,13 @@ class App extends Component {
 
   handleUserLogin(username) {
     this.setState({ username: username, currentUser: true })
+  }
+
+  handleSignOut(e) {
+    this.setState({
+      username: "",
+      currentUser: false
+    })
   }
 
   // handleCommentSubmit(user) {
@@ -121,24 +129,11 @@ class App extends Component {
     const { conditionsOne, conditionsTwo, conditionsThree, currentUser } = this.state;
     const { first, second, third } = this.props;
 
-    // const currentUser = currentUser ? (
-    //   <ul>
-    //     <li><Link to="/">Home</Link>{' '}</li>
-    //     <li><Link to="/profile">Profile</Link>{' '}</li>
-    //     <li><Link >Sign Out</Link></li>
-    //   </ul>
-    // ) : (
-    //   <ul>
-    //     <li><Link to="/">Home</Link>{' '}</li>
-    //     <li><Link to="/login">Log in</Link>{' '}</li>
-    //     <li><Link to="/signup">Sign Up</Link></li>
-    //   </ul>
-    // )
-    // const signOut = currentUser ? (
-    //   <li>{' '}<Link>Sign Out</Link></li>
-    // ) : (
-    //   <li>{' '}<Link to="/login">Sign In</Link></li>
-    // )
+    const signOut = currentUser ? (
+      <li>{' '}<Link to="/" onClick={this.handleSignOut}>Sign Out</Link></li>
+    ) : (
+      <li>{' '}<Link to="/login">Sign In</Link></li>
+    )
 
     return (
       <Router>
@@ -153,10 +148,7 @@ class App extends Component {
               <li><Link to="/profile">Profile</Link></li>
               {/* <Link to="/login">Log in</Link>{' '}
               <Link to="/signup">Sign Up</Link>{' '} */}
-
-              {/* {signOut} */}
-
-
+              {signOut}
             </ul>
           </nav>
           <Route exact path="/" component={
@@ -186,7 +178,7 @@ class App extends Component {
               currentUser ? (
                 <Redirect to="/profile" />
               ) : (
-                <Login onLogin={this.handleUserLogin} onCommentSubmit={ this.handleCommentSubmit } />
+                <Login onLogin={this.handleUserLogin} />
               )
             )}
           />
@@ -199,13 +191,6 @@ class App extends Component {
               )
             )}
           />
-          {/* <Route exact path="/" render={() => (
-            loggedIn ? (
-            <Redirect to="/dashboard"/>
-            ) : (
-            <PublicHomePage/>
-            )
-          )}/> */}
           <Route path="/profile"
             component={ () => (
               currentUser ? (
