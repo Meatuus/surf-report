@@ -1,19 +1,15 @@
 'use strict'
 
 var express = require('express');
-// var mongoose = require('mongoose');
 const user = require('./user');
 var Users = require('./model/users');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 var request = require('request');
-// import axios from 'axios';
 var axios = require('axios');
 
 var nodemailer = require('nodemailer');
 var {email, password} = require('./email');
-
-// var Surf = require('./model/surf');
 
 var app = express();
 var router = express.Router();
@@ -87,10 +83,6 @@ app.get('/api/users', (req, res) => {
     .fetchAll()
     .then(function(users) {
       res.json({ users });
-
-      // pass array of all users to alert function => this will be moved to separate function
-      let usersArray = users.models;
-      alerting(usersArray);
     })
 })
 
@@ -102,6 +94,63 @@ app.get('/api/users/:username', (req, res) => {
       res.json(user)
     })
 })
+
+app.post('/api/users', (req, res) => {
+  user
+    .createUser({
+      username: req.body.username,
+      password: req.body.password,
+      alert: req.body.alert
+    })
+    .then(() => {
+      res.sendStatus(200)
+      console.log(req.body.username);
+      signupEmail(req.body.username);
+    })
+})
+
+app.put('/api/users/:username', (req, res) => {
+  Users
+    .where('username', req.params.username)
+    .fetch()
+    .then(function(user) {
+      user
+        .save({
+          username: req.body.username,
+          password: req.body.password,
+          alert: req.body.alert,
+          SwellMin: req.body.SwellMin,
+          SwellMax: req.body.SwellMax,
+          wind: req.body.wind,
+          location: req.body.location,
+        })
+        .then(function(saved) {
+          res.json({ saved });
+        });
+    });
+})
+
+app.delete('/api/users/:id', (req, res) => {
+  Users
+    .where('id', req.params.id)
+    .destroy()
+    .then(function(destroyed) {
+      res.json({ destroyed });
+    });
+})
+
+//Use our router configuration when we call /api
+app.use('/api', router);
+
+// on intervals of 1 hour compares current conditions data with user data to send emails
+setInterval(function() {
+  Users
+    .fetchAll()
+    .then(function(users) {
+      let usersArray = users.models;
+      alerting(usersArray);
+    })
+}, 3600000);
 
 // TODO: have alerting function fire on interval of 3 hours instead of get request to users
 
@@ -178,53 +227,6 @@ function signupEmail(emailTo) {
   };
   sendEmail(mailOptions);
 }
-
-app.post('/api/users', (req, res) => {
-  user
-    .createUser({
-      username: req.body.username,
-      password: req.body.password,
-      alert: req.body.alert
-    })
-    .then(() => {
-      res.sendStatus(200)
-      console.log(req.body.username);
-      signupEmail(req.body.username);
-    })
-})
-
-app.put('/api/users/:username', (req, res) => {
-  Users
-    .where('username', req.params.username)
-    .fetch()
-    .then(function(user) {
-      user
-        .save({
-          username: req.body.username,
-          password: req.body.password,
-          alert: req.body.alert,
-          SwellMin: req.body.SwellMin,
-          SwellMax: req.body.SwellMax,
-          wind: req.body.wind,
-          location: req.body.location,
-        })
-        .then(function(saved) {
-          res.json({ saved });
-        });
-    });
-})
-
-app.delete('/api/users/:id', (req, res) => {
-  Users
-    .where('id', req.params.id)
-    .destroy()
-    .then(function(destroyed) {
-      res.json({ destroyed });
-    });
-})
-
-//Use our router configuration when we call /api
-app.use('/api', router);
 
 //starts the server and listens for requests
 app.listen(port, function() {
