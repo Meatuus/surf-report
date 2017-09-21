@@ -16,9 +16,6 @@ var router = express.Router();
 
 var port = process.env.API_PORT || 3001;
 
-//db config
-// mongoose.connect('mongodb://tyler:Sandcastle@ds044699.mlab.com:44699/mernapp');
-
 //now we should configure the API to use bodyParser and look for
 //JSON data in the request body
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -36,15 +33,15 @@ app.use(bodyParser.json());
 //   res.setHeader('Cache-Control', 'no-cache');
 //   next();
 // });
+
+app.use(cors());
+
 const locationOneUrl = 'http://magicseaweed.com/api/f03a395d88e9766e7ba7b625c73cc794/forecast/?spot_id=698';
 const locationTwoUrl = 'http://magicseaweed.com/api/f03a395d88e9766e7ba7b625c73cc794/forecast/?spot_id=541';
 const locationThreeUrl = 'http://magicseaweed.com/api/f03a395d88e9766e7ba7b625c73cc794/forecast/?spot_id=1036';
 const locationOne = "Ballina";
 const locationTwo = "Byron Bay";
 const locationThree = "Shelly Beach";
-
-
-app.use(cors());
 
 //now we can set the route path & initialize the API
 router.get('/', function(req, res) {
@@ -151,8 +148,6 @@ setInterval(function() {
       alerting(usersArray);
     })
 }, 3600000);
-
-// TODO: have alerting function fire on interval of 3 hours instead of get request to users
 
 let transporter = nodemailer.createTransport({
   service: 'gmail',
