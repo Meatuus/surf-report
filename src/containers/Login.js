@@ -44,20 +44,6 @@ class Login extends Component {
     })
   }
 
-
-  // handleCommentSubmit(user) {
-  //   // let comments = this.state.data;
-  //   // comment.id = Date.now();
-  //   // let newComments = comments.concat([comment]);
-  //   // this.setState({ data: newComments });
-  //
-  //   axios.post("http://localhost:3001/createUser", user)
-  //     .catch(err => {
-  //       console.error(err);
-  //       // this.setState({ user: comments });
-  //     });
-  // }
-
   render() {
     const { username, password } = this.state;
 

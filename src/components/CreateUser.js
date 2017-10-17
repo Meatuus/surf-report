@@ -43,7 +43,6 @@ class CreateUser extends Component {
           swellMin: 0,
           swellMax: 0,
           wind: 0,
-          // TODO: add all fields here to be blank
           })
           .then(response => {
             this.props.onLogin(username);
@@ -59,62 +58,7 @@ class CreateUser extends Component {
     }).catch(err => {
       console.error(`errors:: ${err}`);
     })
-    // if {
-    //   console.log('equals null');
-    // } else {
-    //   console.log('user taken');
-    // }
-
-
-    // axios.post("http://localhost:3001/api/users", {
-    //   username: username,
-    //   password: password,
-    //   alert: false,
-    //   })
-    //   .then(response => {
-    //     this.props.onLogin(username);
-    //     console.log(`response:: ${response}`);
-    //   })
-    //   .catch(err => {
-    //     console.error(`errors:: ${err}`);
-    //   });
-    //   this.setState({ username: '', password: '' });
-
-    // this.props.onCommentSubmit({ user: user, password: password });
-    // fetch("http://localhost:3001/api/users", {
-    //   method: 'POST',
-    //   headers: {
-    //     'Accept': 'application/json',
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({
-    //     username: username,
-    //     password: password,
-    //   })
-    // })
-    //   .then((response) => {
-    //     return response.json()
-    //   }).then((json) => {
-    //     console.log('JSON from the ISS', json)
-    //     this.setState({ user: '', password: '' });
-    //   }).catch((ex) => {
-    //     console.log('An error occured while parsing!', ex)
-    //   });
   }
-
-
-  // handleCommentSubmit(user) {
-  //   // let comments = this.state.data;
-  //   // comment.id = Date.now();
-  //   // let newComments = comments.concat([comment]);
-  //   // this.setState({ data: newComments });
-  //
-  //   axios.post("http://localhost:3001/createUser", user)
-  //     .catch(err => {
-  //       console.error(err);
-  //       // this.setState({ user: comments });
-  //     });
-  // }
 
   render() {
     const original = this.state.originalUser === false ? <p>Username is taken</p> : null;
