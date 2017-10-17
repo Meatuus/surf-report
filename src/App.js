@@ -130,9 +130,15 @@ class App extends Component {
     const { first, second, third } = this.props;
 
     const signOut = currentUser ? (
-      <li>{' '}<Link to="/" onClick={this.handleSignOut}>Sign Out</Link></li>
+      <div>
+        <li><Link to="/profile">Profile</Link></li>
+        <li>{' '}<Link to="/" onClick={this.handleSignOut}>Sign Out</Link></li>
+      </div>
     ) : (
-      <li>{' '}<Link to="/login">Sign In</Link></li>
+      <div>
+        <li><Link to="/login">Sign In</Link></li>
+        <li>{' '}<Link to="/signup">Sign Up</Link></li>
+      </div>
     )
 
     return (
@@ -145,7 +151,7 @@ class App extends Component {
             <ul>
               <li><Link to="/">Home</Link>{' '}</li>
               {/* <Link to="/locations">Locations</Link> */}
-              <li><Link to="/profile">Profile</Link></li>
+              {/* <li><Link to="/profile">Profile</Link></li> */}
               {/* <Link to="/login">Log in</Link>{' '}
               <Link to="/signup">Sign Up</Link>{' '} */}
               {signOut}

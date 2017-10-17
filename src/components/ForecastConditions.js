@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import ForecastSwell from './ForecastSwell';
 import ForecastWind from './ForecastWind';
+import ForecastTemp from './ForecastTemp';
 
 class ForecastConditions extends Component {
   render() {
@@ -39,15 +40,19 @@ class ForecastConditions extends Component {
         {conditionDays[0]}
         <ForecastSwell conditions={firstDay} />
         <ForecastWind conditions={firstDay} />
+        <ForecastTemp conditions={firstDay} />
         {conditionDays[1]}
         <ForecastSwell conditions={secondDay} />
         <ForecastWind conditions={secondDay} />
+        <ForecastTemp conditions={secondDay} />
         {conditionDays[2]}
         <ForecastSwell conditions={thirdDay} />
         <ForecastWind conditions={thirdDay} />
+        <ForecastTemp conditions={thirdDay} />
         {conditionDays[3]}
         <ForecastSwell conditions={fourthDay} />
         <ForecastWind conditions={fourthDay} />
+        <ForecastTemp conditions={fourthDay} />
       </div>
     );
   }
