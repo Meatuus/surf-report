@@ -36,11 +36,18 @@ class ForecastConditions extends Component {
     return (
       <div>
         <h1>Forecasting...</h1>
-        <ForecastSwell conditions={firstDay} day={conditionDays[0]} />
-        <ForecastWind conditions={firstDay} day={conditionDays[0]} />
-        <ForecastSwell conditions={secondDay} day={conditionDays[1]} />
-        <ForecastSwell conditions={thirdDay} day={conditionDays[2]} />
-        <ForecastSwell conditions={fourthDay} day={conditionDays[3]} />
+        {conditionDays[0]}
+        <ForecastSwell conditions={firstDay} />
+        <ForecastWind conditions={firstDay} />
+        {conditionDays[1]}
+        <ForecastSwell conditions={secondDay} />
+        <ForecastWind conditions={secondDay} />
+        {conditionDays[2]}
+        <ForecastSwell conditions={thirdDay} />
+        <ForecastWind conditions={thirdDay} />
+        {conditionDays[3]}
+        <ForecastSwell conditions={fourthDay} />
+        <ForecastWind conditions={fourthDay} />
       </div>
     );
   }

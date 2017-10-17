@@ -15,7 +15,7 @@ class ForecastSwell extends Component {
     const minSwellArray = conditions.map((item) => (
       item.swell.minBreakingHeight
     ));
-    const minSwell = Math.max(...minSwellArray);
+    const minSwell = Math.min(...minSwellArray);
 
     // Swell direction
     const swellDirection = conditions[0].swell.components.combined.compassDirection;
@@ -25,7 +25,6 @@ class ForecastSwell extends Component {
 
     return(
       <div>
-        <h3>{this.props.day}</h3>
         <LocationSwell
           swellHeightMin={minSwell}
           swellHeightMax={maxSwell}

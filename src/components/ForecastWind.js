@@ -5,13 +5,7 @@ class ForecastWind extends Component {
   render() {
     const { conditions } = this.props;
 
-    // // Max Swell calculations
-    // const maxSwellArray = conditions.map((item) => (
-    //   item.swell.maxBreakingHeight
-    // ));
-    // const maxSwell = Math.max(...maxSwellArray);
-    //
-    // Min Wind calculations
+    // Wind speed calculations
     const windArray = conditions.map((item) => (
       item.wind.speed
     ));
@@ -26,7 +20,6 @@ class ForecastWind extends Component {
 
     return(
       <div>
-        <h3>{this.props.day}</h3>
         <LocationWind
           windSpeed={`${minWind} - ${maxWind}`}
           windUnit={windUnit}
