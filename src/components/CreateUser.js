@@ -39,6 +39,11 @@ class CreateUser extends Component {
           username: username,
           password: password,
           alert: false,
+          location: 1,
+          swellMin: 0,
+          swellMax: 0,
+          wind: 0,
+          // TODO: add all fields here to be blank
           })
           .then(response => {
             this.props.onLogin(username);
