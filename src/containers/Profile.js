@@ -26,11 +26,14 @@ class Profile extends Component {
     this.handleUserInput = this.handleUserInput.bind(this);
     this.handleAlertCheckboxInput = this.handleAlertCheckboxInput.bind(this);
     this.handleUserLoad = this.handleUserLoad.bind(this);
-    this.handleAlertSubmit = this.handleAlertSubmit.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
-  // TODO: on login - fill state with what's in database
-  // TODO: on signup - log user in
-  // TODO: add put request to update user
+
+  handleAlertCheckboxInput(e) {
+    let user = {...this.state.user};
+    user[e.target.name] = e.target.checked;
+    this.setState({ user });
+  }
 
   handleUserInput(e) {
     // create clone of fields object using ES6 spread operator
@@ -38,14 +41,14 @@ class Profile extends Component {
     // update specified key in the fields object using the input's name attribute
     user[e.target.name] = e.target.value;
     this.setState({ user });
-
   }
 
   // handleUserInputChange(e) {
   //   this.props.onUserInput(e);
   // }
 
-  handleAlertSubmit(e) {
+  // update user's field settings to db
+  handleSubmit(e) {
     e.preventDefault();
     const { username, alertLocation, alertCheckbox, alertSwellMin, alertSwellMax, alertWindDirection } = this.state.user;
 
@@ -57,17 +60,6 @@ class Profile extends Component {
       wind: alertWindDirection,
       location: alertLocation,
     }).then(res => {
-      // let alert = res.data.alert === 0 ? false : true;
-      // this.setState({
-      //   user: {
-      //     username: res.data.username,
-      //     alertLocation: res.data.location,
-      //     alertCheckbox: alert,
-      //     alertSwellMin: res.data.SwellMin,
-      //     alertSwellMax: res.data.SwellMax,
-      //     alertWindDirection: res.data.wind,
-      //   }
-      // })
       console.log(`saved user:: ${res.data.username}`);
     }).catch(err => {
       console.error(`errors:: ${err}`);
@@ -83,11 +75,7 @@ class Profile extends Component {
   //   this.props.onAlertCheckboxInput(e.target.checked);
   // }
   //
-  handleAlertCheckboxInput(e) {
-    let user = {...this.state.user};
-    user[e.target.name] = e.target.checked;
-    this.setState({ user });
-  }
+
 
   // handleAlertSwellMinInputChange(e) {
   //   console.log(e.target.value);
@@ -102,6 +90,7 @@ class Profile extends Component {
   //   this.props.onAlertWindDirectionInput(e.target.value);
   // }
 
+  // Load user and personal settings from db
   handleUserLoad() {
     let user = this.props.user;
 
@@ -119,13 +108,13 @@ class Profile extends Component {
           alertWindDirection: res.data.wind,
         }
       })
-      console.log(`response:: ${res.data.username}, ${res.data.password}`);
+      console.log(`user:: ${res.data.username} loaded successfully :)`);
     }).catch(err => {
       console.error(`errors:: ${err}`);
     })
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.handleUserLoad();
   }
 
@@ -138,7 +127,7 @@ class Profile extends Component {
 
     return(
       <div>
-        <form onSubmit={this.handleAlertSubmit}>
+        <form onSubmit={this.handleSubmit}>
           <h2>Profile Page :: {this.state.user.username}</h2>
 
           {/* <p>
