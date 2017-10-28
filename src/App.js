@@ -14,7 +14,6 @@ import Login from './containers/Login';
 import CreateUser from './components/CreateUser';
 import Location from './containers/Location'
 import './assets/css/App.css';
-import logo from './assets/logo.svg';
 
 class App extends Component {
   constructor(props) {
@@ -150,9 +149,7 @@ class App extends Component {
       	<Router>	
 			<div className="App">
 				<nav className="App-header">
-					<img src={logo} className="App-logo" alt="logo" />
 					<h1>Surf Alert</h1>
-
 					<ul>
 						<li><Link to="/">Home</Link>{' '}</li>
 						<li onClick={dropDown}>Locations{' '}</li>
