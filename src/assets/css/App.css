@@ -25,12 +25,12 @@ h1, h2, h3, h4, h5, h6 {
 } */
 
 .App-header {
-  background-image: url("../img/surf-bg.jpeg");
-  background-position: center;
-  background-size: cover;
-  min-height: 150px;
-  padding: 20px;
-  color: white;
+	background-image: url("../img/surf-bg.jpeg");
+	background-position: center;
+	background-size: cover;
+	min-height: 150px;
+	padding: 20px;
+	color: white;
 }
 
 .app-title {
@@ -40,6 +40,10 @@ h1, h2, h3, h4, h5, h6 {
 #locations-dd {
 	cursor: pointer;
 	position: relative;
+}
+
+#locations-dd:hover {
+    color: rgb(255, 254, 206);
 }
 
 .app-nav {
@@ -62,7 +66,7 @@ h1, h2, h3, h4, h5, h6 {
 	left: -20px;
 	top: 43px;
     z-index: 1;
-    background: #48cfe4;
+    background: #48b1e4;
 }
 
 .app-nav__locations {
@@ -86,8 +90,12 @@ h1, h2, h3, h4, h5, h6 {
     text-decoration: none;
 }
 
+.app-nav__item a:hover {
+    color: rgb(255, 254, 206);
+}
+
 .App-intro {
-  font-size: large;
+	font-size: large;
 }
 
 /* @keyframes App-logo-spin {
@@ -95,5 +103,5 @@ h1, h2, h3, h4, h5, h6 {
   to { transform: rotate(360deg); }
 } */
 .visible {
-    display: flex;
+	display: flex;
 }
