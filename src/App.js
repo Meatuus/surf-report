@@ -6,13 +6,12 @@ import {
   Link
 } from 'react-router-dom';
 import axios from 'axios';
-// import conditions from './data/conditions';
 import baseData from './data/baseData';
 import Home from './containers/Home';
+// import DropDown from './components/DropDown';
 import Profile from './containers/Profile';
 import Login from './containers/Login';
 import CreateUser from './components/CreateUser';
-// import Locations from './containers/Locations'
 import Location from './containers/Location'
 import './assets/css/App.css';
 import logo from './assets/logo.svg';
@@ -23,18 +22,6 @@ class App extends Component {
     this.state = {
       currentUser: false,
       username: "",
-      // user: {
-      //   alertLocation: "",
-      //   alertCheckbox: false,
-      //   alertSwellMin: "",
-      //   alertSwellMax: "",
-      //   alertWindDirection: "",
-      // },
-      // alertLocation: "",
-      // alertCheckbox: false,
-      // alertSwellMin: "",
-      // alertSwellMax: "",
-      // alertWindDirection: "",
       conditionsOne: baseData,
       conditionsTwo: baseData,
       conditionsThree: baseData,
@@ -51,6 +38,8 @@ class App extends Component {
     // this.handleUserInput = this.handleUserInput.bind(this);
     this.handleUserLogin = this.handleUserLogin.bind(this);
     this.handleSignOut = this.handleSignOut.bind(this);
+
+    // this.getSelected = this.getSelected.bind(this);
   }
 
   loadCommentsFromServer() {
@@ -120,6 +109,16 @@ class App extends Component {
   // handleAlertWindDirectionInput(WindDirection) {
   //   this.setState({alertWindDirection: WindDirection});
   // }
+  // getSelected() {
+  //   console.log('dropdown click');
+  //   const locationNames = [ this.props.first, this.props.second, this.props.third ];
+  //   // const colours = this.props.colours
+  //   const selectedLocation = this.props.params.colour;
+  //
+  //   // Find the option matching the route param, or
+  //   // return a default value when the colour is not found
+  //   return find(colours, { value: selectedColour }) || colours[0];
+  // }
 
   componentDidMount() {
     this.loadCommentsFromServer();
@@ -128,6 +127,7 @@ class App extends Component {
   render() {
     const { conditionsOne, conditionsTwo, conditionsThree, currentUser } = this.state;
     const { first, second, third } = this.props;
+    const locationNames = [ first, second, third ];
 
     const signOut = currentUser ? (
       <div>
@@ -141,89 +141,79 @@ class App extends Component {
       </div>
     )
 
+    const dropDown = () => {
+      console.log('clicked');
+    //   <DropDown options={locationNames} />
+    }
+
     return (
-      <Router>
-        <div className="App">
-          <nav className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <h1>Surf Alert</h1>
+      	<Router>	
+			<div className="App">
+				<nav className="App-header">
+					<img src={logo} className="App-logo" alt="logo" />
+					<h1>Surf Alert</h1>
 
-            <ul>
-              <li><Link to="/">Home</Link>{' '}</li>
-              {/* <Link to="/locations">Locations</Link> */}
-              {/* <li><Link to="/profile">Profile</Link></li> */}
-              {/* <Link to="/login">Log in</Link>{' '}
-              <Link to="/signup">Sign Up</Link>{' '} */}
-              {signOut}
-            </ul>
-          </nav>
-          <Route exact path="/" component={
-            () => (<Home
-              locationOneConditions={conditionsOne}
-              locationOneName={first}
-              locationTwoConditions={conditionsTwo}
-              locationTwoName={second}
-              locationThreeConditions={conditionsThree}
-              locationThreeName={third}
-                   />
-            )} />
-          {/* <Route path="/locations" component={
-            () => (<Locations conditions={conditions}/>
-          )} /> */}
-          <Route
-            path={`/location/${first.replace(/ /g,'_')}`} component={ () => (<Location location="Shelly Beach" conditions={conditionsOne}/>)}
-          />
-          <Route
-            path={`/location/${second.replace(/ /g,'_')}`} component={ () => (<Location location="Ballina" conditions={conditionsTwo} />)}
-          />
-          <Route
-            path={`/location/${third.replace(/ /g,'_')}`} component={ () => (<Location location="Byron Bay" conditions={conditionsThree} />)}
-          />
-          <Route
-            path="/login" component={ () => (
-              currentUser ? (
-                <Redirect to="/profile" />
-              ) : (
-                <Login onLogin={this.handleUserLogin} />
-              )
-            )}
-          />
-          <Route
-            path="/signup" component={ () => (
-              currentUser ? (
-                <Redirect to="/profile" />
-              ) : (
-                <CreateUser onLogin={this.handleUserLogin} onCommentSubmit={ this.handleCommentSubmit } />
-              )
-            )}
-          />
-          <Route path="/profile"
-            component={ () => (
-              currentUser ? (
-                <Profile
-                  user={this.state.username}
-                  // // user={this.state.user}
-                  // alertLocation={this.state.alertLocation}
-                  // alertCheckbox={this.state.alertCheckbox}
-                  // alertSwellMin={this.state.alertSwellMin}
-                  // alertSwellMax={this.state.alertSwellMax}
-                  // alertWindDirection={this.state.alertWindDirection}
-                  // // onUserInput={this.handleUserInput}
-                  // onAlertLocationInput={this.handleAlertLocationInput}
-                  // onAlertCheckboxInput={this.handleAlertCheckboxInput}
-                  // onAlertSwellMinInput={this.handleAlertSwellMinInput}
-                  // onAlertSwellMaxInput={this.handleAlertSwellMaxInput}
-                  // onAlertWindDirectionInput={this.handleAlertWindDirectionInput}
-                  locations={[first, second, third]}
-                />
-              ) : (
-                <Redirect to="/login" />
-              )
+					<ul>
+						<li><Link to="/">Home</Link>{' '}</li>
+						<li onClick={dropDown}>Locations{' '}</li>
+						<li><Link to={`/location/${first.replace(/ /g, '_')}`}>{first}</Link>{' '}</li>
+						<li><Link to={`/location/${second.replace(/ /g, '_')}`}>{second}</Link>{' '}</li>
+						<li><Link to={`/location/${third.replace(/ /g, '_')}`}>{third}</Link></li>
+						{signOut}
+					</ul>
+				</nav>
+				<Route exact path="/" component={
+					() => (<Home
+					locationOneConditions={conditionsOne}
+					locationOneName={first}
+					locationTwoConditions={conditionsTwo}
+					locationTwoName={second}
+					locationThreeConditions={conditionsThree}
+					locationThreeName={third}
+						/>
+					)} />
+				<Route
+					path={`/location/${first.replace(/ /g,'_')}`} component={ () => (<Location location="Shelly Beach" conditions={conditionsOne}/>)}
+				/>
+				<Route
+					path={`/location/${second.replace(/ /g,'_')}`} component={ () => (<Location location="Ballina" conditions={conditionsTwo} />)}
+				/>
+				<Route
+					path={`/location/${third.replace(/ /g,'_')}`} component={ () => (<Location location="Byron Bay" conditions={conditionsThree} />)}
+				/>
+				<Route
+					path="/login" component={ () => (
+					currentUser ? (
+						<Redirect to="/profile" />
+					) : (
+						<Login onLogin={this.handleUserLogin} />
+					)
+					)}
+				/>
+				<Route
+					path="/signup" component={ () => (
+					currentUser ? (
+						<Redirect to="/profile" />
+					) : (
+						<CreateUser onLogin={this.handleUserLogin} onCommentSubmit={ this.handleCommentSubmit } />
+					)
+					)}
+				/>
+				<Route path="/profile"
+					component={ () => (
+					currentUser ? (
+						<Profile
+						user={this.state.username}
+						locations={[first, second, third]}
+						/>
+					) : (
+						<Redirect to="/login" />
+					)
 
-            )}
-          />
-        </div>
-      </Router>
+					)}
+				/>
+			</div>
+      	</Router>
     );
   }
 }
