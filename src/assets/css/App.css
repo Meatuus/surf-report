@@ -1,5 +1,22 @@
+body {
+  	font-family: 'Merienda One', cursive;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Lobster', cursive;
+}
+
 .App {
   text-align: center;
+/* font-family: 'Lobster', cursive; */
+/* font-family: 'Permanent Marker', cursive; */
+/* font-family: 'Pacifico', cursive; */
+/* font-family: 'Limelight', cursive; */
+/* font-family: 'Fugaz One', cursive; */
+/* font-family: 'Black Ops One', cursive; */
+/* font-family: 'Aclonica', sans-serif; */
+/* font-family: 'Allerta Stencil', sans-serif; */
+/* font-family: 'Merienda One', cursive; */
 }
 
 /* .App-logo {
@@ -8,7 +25,6 @@
 } */
 
 .App-header {
-  /* background: #00ff00 url("../img/surf-bg.jpeg") no-repeat cover center; */
   background-image: url("../img/surf-bg.jpeg");
   background-position: center;
   background-size: cover;
@@ -17,11 +33,67 @@
   color: white;
 }
 
+.app-title {
+	font-size: 50px;
+}
+
+#locations-dd {
+	cursor: pointer;
+	position: relative;
+}
+
+.app-nav {
+    display: flex;
+	flex-direction: row;
+	margin: 0;
+    padding: 0;
+    list-style-type: none;
+    justify-content: center;
+}
+
+.app-nav__sublist {
+    display: none;  
+    flex-direction: column;
+    padding: 0;
+    list-style-type: none;
+    text-align: left;
+
+	position: absolute;
+	left: -20px;
+	top: 43px;
+    z-index: 1;
+    background: #48cfe4;
+}
+
+.app-nav__locations {
+    display: block;
+    min-width: 102px;
+    padding: 5px 20px;
+    text-decoration: none;
+}
+
+.app-nav__item-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.app-nav__item {
+    margin: 0 25px;
+}
+
+.app-nav__item a {
+    color: white;
+    text-decoration: none;
+}
+
 .App-intro {
   font-size: large;
 }
 
-@keyframes App-logo-spin {
+/* @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+} */
+.visible {
+    display: flex;
 }

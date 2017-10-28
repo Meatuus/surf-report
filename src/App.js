@@ -126,36 +126,49 @@ class App extends Component {
   render() {
     const { conditionsOne, conditionsTwo, conditionsThree, currentUser } = this.state;
     const { first, second, third } = this.props;
-    const locationNames = [ first, second, third ];
+    // const locationNames = [ first, second, third ];
 
     const signOut = currentUser ? (
-      <div>
-        <li><Link to="/profile">Profile</Link></li>
-        <li>{' '}<Link to="/" onClick={this.handleSignOut}>Sign Out</Link></li>
-      </div>
+		<div className="app-nav__item-container">
+			<li className="app-nav__item"><Link to="/profile">Profile</Link></li>
+			<li className="app-nav__item">{' '}<Link to="/" onClick={this.handleSignOut}>Sign Out</Link></li>
+		</div>
     ) : (
-      <div>
-        <li><Link to="/login">Sign In</Link></li>
-        <li>{' '}<Link to="/signup">Sign Up</Link></li>
-      </div>
+		<div className="app-nav__item-container">
+        	<li className="app-nav__item"><Link to="/login">Sign In</Link></li>
+        	<li className="app-nav__item">{' '}<Link to="/signup">Sign Up</Link></li>
+		</div>
     )
 
     const dropDown = () => {
-      console.log('clicked');
-    //   <DropDown options={locationNames} />
+		let sublist = document.getElementsByClassName("app-nav__sublist")[0];
+		let btnIcon = document.getElementsByClassName("locations-icon")[0];
+
+		if (sublist.classList.contains("visible")) {
+			sublist.classList.remove("visible")
+			btnIcon.classList.add("fa-angle-down")
+			btnIcon.classList.remove("fa-angle-up")
+		} else {
+			sublist.classList.add("visible")
+			btnIcon.classList.remove("fa-angle-down")
+			btnIcon.classList.add("fa-angle-up")
+		}
     }
 
     return (
       	<Router>	
 			<div className="App">
 				<nav className="App-header">
-					<h1>Surf Alert</h1>
-					<ul>
-						<li><Link to="/">Home</Link>{' '}</li>
-						<li onClick={dropDown}>Locations{' '}</li>
-						<li><Link to={`/location/${first.replace(/ /g, '_')}`}>{first}</Link>{' '}</li>
-						<li><Link to={`/location/${second.replace(/ /g, '_')}`}>{second}</Link>{' '}</li>
-						<li><Link to={`/location/${third.replace(/ /g, '_')}`}>{third}</Link></li>
+					<h1 className="app-title">Surf Alert</h1>
+					<ul className="app-nav">
+						<li className="app-nav__item"><Link to="/">Home</Link>{' '}</li>
+						<li className="app-nav__item" onClick={dropDown} id="locations-dd">Locations <i className="locations-icon fa fa-angle-down" aria-hidden="true"></i>{' '}
+							<ul className="app-nav__sublist">
+								<li className="app-nav__locations"><Link to={`/location/${first.replace(/ /g, '_')}`}>{first}</Link>{' '}</li>
+								<li className="app-nav__locations"><Link to={`/location/${second.replace(/ /g, '_')}`}>{second}</Link>{' '}</li>
+								<li className="app-nav__locations"><Link to={`/location/${third.replace(/ /g, '_')}`}>{third}</Link></li>
+							</ul>
+						</li>
 						{signOut}
 					</ul>
 				</nav>
