@@ -1,10 +1,10 @@
 import React from 'react';
 
 const LocationWind = props => (
-  <li>
-    <h3>Wind</h3>
-    <div>{props.windSpeed} {props.windUnit}</div>
-    <div>{props.windDirection}</div>
+  <li className="cond__item">
+    <h4 className="cond__h4">Wind</h4>
+    <p className="cond__p">{props.windSpeed} {props.windUnit}</p>
+    <p className="cond__p">{props.windDirection}</p>
   </li>
 );
 

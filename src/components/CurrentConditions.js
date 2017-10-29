@@ -15,7 +15,7 @@ class CurrentConditions extends Component {
 
     const futureConditions = futureConditionsArray.map((item, index) => (
       <div className="App-intro" key={index}>
-        <ul>
+        <ul className="cond__list">
           <LocationSwell
             swellHeightMin={item.swell.minBreakingHeight}
             swellHeightMax={item.swell.maxBreakingHeight}
@@ -37,7 +37,7 @@ class CurrentConditions extends Component {
 
     return(
       <div>
-        <h2>Current Conditions</h2>
+        <h3 className="cond__h3">Current Conditions</h3>
         {currentCondition}
       </div>
     );

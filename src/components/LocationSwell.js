@@ -1,10 +1,10 @@
 import React from 'react';
 
 const LocationSwell = props => (
-  <li>
-    <h3>Swell</h3>
-    <div>{props.swellHeightMin} - {props.swellHeightMax} {props.swellUnit}</div>
-    <div>{props.swellDirection}</div>
+  <li className="cond__item">
+    <h4 className="cond__h4">Swell</h4>
+    <p className="cond__p">{props.swellHeightMin} - {props.swellHeightMax} {props.swellUnit}</p>
+    <p className="cond__p">{props.swellDirection}</p>
   </li>
 );
 

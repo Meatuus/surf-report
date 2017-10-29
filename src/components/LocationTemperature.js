@@ -1,9 +1,9 @@
 import React from 'react';
 
 const LocationTemperature = props => (
-  <li>
-    <h3>Temperature</h3>
-    <div>{props.temperature} {`${props.temperatureUnit}`.toUpperCase()}</div>
+  <li className="cond__item">
+    <h4 className="cond__h4">Temperature</h4>
+    <p className="cond__p">{props.temperature} {`${props.temperatureUnit}`.toUpperCase()}</p>
   </li>
 );
 
