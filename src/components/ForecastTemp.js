@@ -16,12 +16,10 @@ class ForecastTemp extends Component {
     const tempUnit = conditions[0].condition.unit;
 
     return(
-      <div>
         <LocationTemperature
           temperature={`${minTemp} - ${maxTemp}`}
           temperatureUnit={tempUnit}
         />
-      </div>
     );
   }
 }

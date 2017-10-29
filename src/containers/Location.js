@@ -32,9 +32,12 @@ class Location extends Component {
     let button = (renderForecast === true ? <ForecastConditions conditions={conditions}/> : null)
 
     return(
-      <div>
-        <h2>{location}</h2>
-        <CurrentConditions conditions={conditions}/>
+      <div className="location__container">
+        <h2 className="cond__h2">{location}</h2>
+        <h3 className="cond__h3">Current Conditions</h3>
+        <div className="location-conds">
+          <CurrentConditions conditions={conditions}/>
+        </div>
         {button}
         <button className="forecast_button" onClick={this.handleButtonClick}>See 4 Day Forecast</button>
       </div>

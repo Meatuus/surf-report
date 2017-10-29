@@ -111,7 +111,6 @@ h1, h2, h3, h4, h5, h6 {
 	display: flex;
 }
 
-
 /* ============================================
 			Home Page Conditions
 =============================================== */
@@ -130,7 +129,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .all-conds__item {
-    background: rgba(50, 126, 175, 0.54);
+    background: rgb(241, 242, 243);
     margin: 0 4rem 1rem;
     border-radius: 3px;
     padding: 1rem 0;
@@ -179,9 +178,42 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0;
 }
 
+/* ============================================
+				Location Page 
+=============================================== */
 
+.location__container {
+    margin: 3rem 0;
+}
 
+.location-conds {
+    /* background: rgba(50, 126, 175, 0.54); */
+    margin: 1rem 4rem 0;
+    border-radius: 3px;
+    padding: 0 0 1rem;
+}
 
+.forecast__list {
+    list-style-type: none;
+    padding: 0;
+}
 
+.forecast__item__list {
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 1rem 0 2rem;
+    margin: 0 8rem 2rem;
+}
 
-
+button.forecast_button {
+	cursor: pointer;
+    padding: 0.5rem 1.5rem;
+    font-size: 18px;
+    border-radius: 4px;
+    border: none;
+    background: #26648b;
+    color: white;
+    font-family: 'Merienda One', cursive;
+}

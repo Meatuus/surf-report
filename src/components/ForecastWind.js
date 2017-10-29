@@ -19,13 +19,11 @@ class ForecastWind extends Component {
     const windUnit = conditions[0].wind.unit;
 
     return(
-      <div>
         <LocationWind
           windSpeed={`${minWind} - ${maxWind}`}
           windUnit={windUnit}
           windDirection={windDirection}
         />
-      </div>
     );
   }
 }

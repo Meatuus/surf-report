@@ -24,14 +24,12 @@ class ForecastSwell extends Component {
     const swellUnit = conditions[0].swell.unit;
 
     return(
-      <div>
         <LocationSwell
           swellHeightMin={minSwell}
           swellHeightMax={maxSwell}
           swellUnit={swellUnit}
           swellDirection={swellDirection}
         />
-      </div>
     );
   }
 }
