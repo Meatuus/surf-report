@@ -254,3 +254,101 @@ button.forecast_button {
 .form-btn:hover {
 	background: #5d92bb;
 }
+
+/* ============================================
+				Profile Page 
+=============================================== */
+
+.profile__checkbox-container {
+	position: relative;
+	margin: 20px auto;
+}
+
+.profile__checkbox {
+    margin-right: 20px;
+}
+
+.profile-inputs {
+    display: flex;
+	flex-direction: column;
+	
+	width: 300px;
+    margin: auto;
+}
+
+.profile-input {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 30px;
+}
+
+.profile-input__input {
+    font-size: 20px;
+    width: 60px;
+    border: none;
+    border-bottom: 2px solid;
+    text-align: center;
+    font-family: 'Merienda One', cursive;
+}
+
+.profile__label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile_dropdown {
+    border: none;
+    padding: 5px;
+	height: 30px;
+	width: 140px;
+    font-size: 18px;
+	font-family: Lobster;
+
+	background: #87abc6;
+
+	cursor: pointer;
+	
+	/* border-radius: 0 !important;
+    border-bottom: 3px solid; */
+}
+
+
+.profile-input {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 30px;
+}
+
+.profile-inputs {
+    width: 300px;
+    margin: auto;
+}
+
+.profile-input__input {
+    font-size: 20px;
+    width: 60px;
+    border: none;
+    border-bottom: 2px solid;
+    text-align: center;
+    font-family: 'Merienda One', cursive;
+}
+
+.profile-btn {
+    font-size: 20px;
+    font-family: Lobster;
+    width: fit-content;
+    padding: 5px 2rem;
+    border: none;
+    background: #87aac6;
+	margin: auto;
+	
+	cursor: pointer;
+}
+
+.profile-btn:hover {
+    background: #6695b9;
+}
+
