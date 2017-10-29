@@ -129,6 +129,13 @@ h1, h2, h3, h4, h5, h6 {
     padding: 0;
 }
 
+.all-conds__item {
+    background: rgba(50, 126, 175, 0.54);
+    margin: 0 4rem 1rem;
+    border-radius: 3px;
+    padding: 1rem 0;
+}
+
 .cond__list {
     list-style-type: none;
     padding: 0;
@@ -136,3 +143,36 @@ h1, h2, h3, h4, h5, h6 {
     flex-direction: row;
     justify-content: center;
 }
+
+.cond__item {
+    margin: 1rem 2rem 0;
+}
+
+.cond__h2 {
+    margin: 0;
+    font-size: 26px;
+}
+
+.cond__h3 {
+    border-bottom: 1px solid rgb(185, 185, 185);
+    padding-bottom: 1rem;
+    margin: 1rem 4rem 0;
+    color: rgb(185, 185, 185);
+}
+
+.cond__h4 {
+	margin: 0;
+	
+	color: #25648c;
+}
+
+.cond__p {
+    margin: 0;
+}
+
+
+
+
+
+
+

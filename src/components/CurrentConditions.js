@@ -37,7 +37,7 @@ class CurrentConditions extends Component {
 
     return(
       <div>
-        <h3 className="cond__h3">Current Conditions</h3>
+        {/* <h3 className="cond__h3">Current Conditions</h3> */}
         {currentCondition}
       </div>
     );

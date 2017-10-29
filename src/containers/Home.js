@@ -5,6 +5,7 @@ import CurrentConditions from '../components/CurrentConditions';
 const Home = (props) => (
 	<div>
 		<h2 className="all-conds__title">All Locations</h2>
+		<h3 className="cond__h3">Current Conditions</h3>
 		<ul className="all-conds__list">
 			{/* <h3>Home Page</h3>
 			<div>
