@@ -63,25 +63,31 @@ class CreateUser extends Component {
   render() {
     const original = this.state.originalUser === false ? <p>Username is taken</p> : null;
     return (
-      <form onSubmit={ this.handleSubmit }>
-        <input
-          type='text'
-          placeholder='User Name'
-          value={ this.state.username }
-          onChange={ this.handleUserChange }
-        />
-        <input
-          type='password'
-          placeholder='Password'
-          value={ this.state.password }
-          onChange={ this.handlePasswordChange }
-        />
-        <input
-          type='submit'
-          value='Post'
-        />
-        {original}
-      </form>
+      <div>
+        <h2>Sign Up</h2>
+        <form onSubmit={this.handleSubmit} className="form">
+          <input
+            className="form-input"
+            type='text'
+            placeholder='User Name'
+            value={ this.state.username }
+            onChange={ this.handleUserChange }
+          />
+          <input
+            className="form-input"
+            type='password'
+            placeholder='Password'
+            value={ this.state.password }
+            onChange={ this.handlePasswordChange }
+          />
+          <input
+            className="form-btn"
+            type='submit'
+            value='Post'
+          />
+          {original}
+        </form>
+      </div>
     )
   }
 }
