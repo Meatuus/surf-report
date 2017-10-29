@@ -136,6 +136,15 @@ h1, h2, h3, h4, h5, h6 {
     padding: 1rem 0;
 }
 
+.all-conds__link {
+    color: #434343;
+    text-decoration: none;
+}
+
+.all-conds__link:hover {
+    color: #000000;
+}
+
 .cond__list {
     list-style-type: none;
     padding: 0;
